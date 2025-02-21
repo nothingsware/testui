@@ -10,6 +10,12 @@ local blur = Instance.new("BlurEffect")
 blur.Size = 24
 blur.Parent = game:GetService("Lighting")
 
+-- Function to remove blur after 5 seconds
+local function removeBlur()
+    wait(5) -- Wait for 5 seconds
+    blur:Destroy() -- Remove the blur effect
+end
+
 -- Add Glow Effect
 local glow = Instance.new("BloomEffect")
 glow.Intensity = 0.5
@@ -1099,5 +1105,8 @@ function Fun.Create(title)
     end
     return tabHandling
 end
+
+-- Call the removeBlur function after the GUI is created
+removeBlur()
 
 return Fun
