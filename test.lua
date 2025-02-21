@@ -5,6 +5,18 @@ local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
 
+-- Add Blur Effect
+local blur = Instance.new("BlurEffect")
+blur.Size = 24
+blur.Parent = game:GetService("Lighting")
+
+-- Add Glow Effect
+local glow = Instance.new("BloomEffect")
+glow.Intensity = 0.5
+glow.Size = 24
+glow.Threshold = 0.9
+glow.Parent = game:GetService("Lighting")
+
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
     
@@ -60,6 +72,15 @@ function Fun.Create(title)
     nightmarefun.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     nightmarefun.ResetOnSpawn = false
 
+    -- Add Blur to Background
+    local backgroundBlur = Instance.new("Frame")
+    backgroundBlur.Name = "BackgroundBlur"
+    backgroundBlur.Parent = nightmarefun
+    backgroundBlur.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    backgroundBlur.BackgroundTransparency = 0.5
+    backgroundBlur.Size = UDim2.new(1, 0, 1, 0)
+    backgroundBlur.ZIndex = -1
+
     Shadow.Name = "Shadow"
     Shadow.Parent = nightmarefun
     Shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -71,9 +92,21 @@ function Fun.Create(title)
 
     mainFrame.Name = "mainFrame"
     mainFrame.Parent = Shadow
-    mainFrame.BackgroundColor3 = Color3.fromRGB(47, 47, 56)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
     mainFrame.Position = UDim2.new(0.0500000007, 0, 0.0780000016, 0)
     mainFrame.Size = UDim2.new(0, 475, 0, 396)
+
+    -- Add Glow to Main Frame
+    local frameGlow = Instance.new("ImageLabel")
+    frameGlow.Name = "FrameGlow"
+    frameGlow.Parent = mainFrame
+    frameGlow.BackgroundTransparency = 1
+    frameGlow.Size = UDim2.new(1, 0, 1, 0)
+    frameGlow.Image = "rbxassetid://5028857084"
+    frameGlow.ImageColor3 = Color3.fromRGB(127, 97, 145)
+    frameGlow.ScaleType = Enum.ScaleType.Slice
+    frameGlow.SliceCenter = Rect.new(24, 24, 276, 276)
+    frameGlow.ZIndex = -1
 
     mainCorner.CornerRadius = UDim.new(0, 6)
     mainCorner.Name = "mainCorner"
@@ -81,7 +114,7 @@ function Fun.Create(title)
 
     mainSide.Name = "mainSide"
     mainSide.Parent = mainFrame
-    mainSide.BackgroundColor3 = Color3.fromRGB(37, 37, 44)
+    mainSide.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
     mainSide.Size = UDim2.new(0, 166, 0, 396)
 
     UICorner.CornerRadius = UDim.new(0, 6)
@@ -102,7 +135,7 @@ function Fun.Create(title)
     nightmares.TextXAlignment = Enum.TextXAlignment.Left
     nightmares.Font = Enum.Font.Gotham
     nightmares.Text = " "..title
-    nightmares.TextColor3 = Color3.fromRGB(92, 53, 93)
+    nightmares.TextColor3 = Color3.fromRGB(127, 97, 145)
     nightmares.TextSize = 20.000
     nightmares.TextWrapped = true
 
@@ -121,7 +154,7 @@ function Fun.Create(title)
 
     cover.Name = "cover"
     cover.Parent = mainSide
-    cover.BackgroundColor3 = Color3.fromRGB(37, 37, 44)
+    cover.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
     cover.BorderSizePixel = 0
     cover.Position = UDim2.new(0.949999988, 0, 0, 0)
     cover.Size = UDim2.new(0, 9, 0, 396)
