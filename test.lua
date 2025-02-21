@@ -13,7 +13,9 @@ blur.Parent = game:GetService("Lighting")
 -- Function to remove blur after 5 seconds
 local function removeBlur()
     wait(5) -- Wait for 5 seconds
-    blur:Destroy() -- Remove the blur effect
+    if blur then
+        blur:Destroy() -- Remove the blur effect
+    end
 end
 
 -- Add Glow Effect
@@ -107,7 +109,8 @@ function Fun.Create(title)
     frameGlow.Name = "FrameGlow"
     frameGlow.Parent = mainFrame
     frameGlow.BackgroundTransparency = 1
-    frameGlow.Size = UDim2.new(1, 0, 1, 0)
+    frameGlow.Position = UDim2.new(-0.05, 0, -0.05, 0) -- Adjusted position to align with the frame
+    frameGlow.Size = UDim2.new(1.1, 0, 1.1, 0) -- Slightly larger to cover the frame
     frameGlow.Image = "rbxassetid://5028857084"
     frameGlow.ImageColor3 = Color3.fromRGB(127, 97, 145)
     frameGlow.ScaleType = Enum.ScaleType.Slice
