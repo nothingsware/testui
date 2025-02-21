@@ -51,56 +51,30 @@ loadingText.TextSize = 24
 loadingText.TextWrapped = true
 
 local function animateLoadingText()
-    local text = "AUTOMATION..."
-    local delayBetweenLetters = 0.1
-    loadingText.Text = ""
-    
-    local letters = {}
+    local text = "AUTOMATION..." -- The full text to display
+    local delayBetweenLetters = 0.1 -- Delay between each letter (in seconds)
+    loadingText.Text = "" -- Start with an empty string
+
     for i = 1, #text do
-        local letter = Instance.new("TextLabel")
-        letter.Parent = loadingText
-        letter.BackgroundTransparency = 1
-        letter.Size = UDim2.new(0, 20, 0, 30)
-        letter.Position = UDim2.new((i - 1) * 0.1, 0, 0, 0)
-        letter.Font = Enum.Font.Gotham
-        letter.Text = string.sub(text, i, i)
-        letter.TextColor3 = Color3.fromRGB(255, 255, 255)
-        letter.TextSize = 24
-        table.insert(letters, letter)
-    end
-    
-    for i = 1, #letters do
-        letters[i].TextTransparency = 1
-    end
-    
-    for i = 1, #letters do
-        letters[i].TextTransparency = 0
-        task.spawn(function()
-            for j = 1, 5 do
-                letters[i].Position = letters[i].Position - UDim2.new(0, 0, 0.1, 0)
-                wait(0.05)
-                letters[i].Position = letters[i].Position + UDim2.new(0, 0, 0.1, 0)
-                wait(0.05)
-            end
-        end)
-        wait(delayBetweenLetters)
+        loadingText.Text = string.sub(text, 1, i) -- Add one letter at a time
+        wait(delayBetweenLetters) -- Wait before adding the next letter
     end
 end
 
-animateLoadingText()
-
-
+-- Start the loading text animation
 coroutine.wrap(animateLoadingText)()
 
+-- Function to remove loading screen and load the main UI
 local function loadMainUI()
-    loadingScreen:Destroy() 
-    wait(1) 
-    Fun.Create("Main UI Title") 
+    wait(5) -- Wait for 5 seconds (loading time)
+    loadingScreen:Destroy() -- Remove the loading screen
+    wait(1) -- Small delay before creating the main UI
+    Fun.Create("Main UI Title") -- Load the main UI
 end
 
-
+-- Call the removeBlur and loadMainUI functions
 removeBlur()
-loadMainUI()  
+loadMainUI()  -- Ensure this is called with the correct capitalization
 
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
