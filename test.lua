@@ -351,6 +351,191 @@ function Fun.Create(title)
                 end)
             end
 
+            function itemHandling:Label(labelText)
+                labelText = labelText or "Label"
+
+                local label = Instance.new("TextLabel")
+                label.Name = "label"
+                label.Parent = sectionFrame
+                label.BackgroundTransparency = 1
+                label.Position = UDim2.new(0, 10, 0, 5)
+                label.Size = UDim2.new(1, -20, 0, 20)
+                label.Font = Enum.Font.Gotham
+                label.Text = labelText
+                label.TextColor3 = Color3.fromRGB(200, 200, 200)
+                label.TextSize = 14
+                label.TextXAlignment = Enum.TextXAlignment.Left
+            end
+
+            function itemHandling:KeyBind(keyText, defaultKey, callback)
+                keyText = keyText or "KeyBind"
+                defaultKey = defaultKey or Enum.KeyCode.E
+                callback = callback or function() end
+
+                local keyBind = Instance.new("TextButton")
+                keyBind.Name = "keyBind"
+                keyBind.Parent = sectionFrame
+                keyBind.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                keyBind.Size = UDim2.new(1, -20, 0, 30)
+                keyBind.Position = UDim2.new(0, 10, 0, 40)
+                keyBind.Font = Enum.Font.Gotham
+                keyBind.Text = keyText .. ": " .. defaultKey.Name
+                keyBind.TextColor3 = Color3.fromRGB(200, 200, 200)
+                keyBind.TextSize = 14
+                keyBind.AutoButtonColor = false
+
+                local key = defaultKey
+
+                -- Hover Effect
+                keyBind.MouseEnter:Connect(function()
+                    tween:Create(keyBind, tweeninfo(0.2), {
+                        BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+                    }):Play()
+                end)
+
+                keyBind.MouseLeave:Connect(function()
+                    tween:Create(keyBind, tweeninfo(0.2), {
+                        BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                    }):Play()
+                end)
+
+                -- Key Bind Event
+                keyBind.MouseButton1Click:Connect(function()
+                    keyBind.Text = keyText .. ": ..."
+                    local input = input.InputBegan:Wait()
+                    if input.UserInputType == Enum.UserInputType.Keyboard then
+                        key = input.KeyCode
+                        keyBind.Text = keyText .. ": " .. key.Name
+                    end
+                end)
+
+                input.InputBegan:Connect(function(input)
+                    if input.KeyCode == key then
+                        callback()
+                    end
+                end)
+            end
+
+            function itemHandling:Dropdown(dropText, options, callback)
+                dropText = dropText or "Dropdown"
+                options = options or {"Option 1", "Option 2", "Option 3"}
+                callback = callback or function() end
+
+                local dropdown = Instance.new("TextButton")
+                dropdown.Name = "dropdown"
+                dropdown.Parent = sectionFrame
+                dropdown.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                dropdown.Size = UDim2.new(1, -20, 0, 30)
+                dropdown.Position = UDim2.new(0, 10, 0, 40)
+                dropdown.Font = Enum.Font.Gotham
+                dropdown.Text = dropText
+                dropdown.TextColor3 = Color3.fromRGB(200, 200, 200)
+                dropdown.TextSize = 14
+                dropdown.AutoButtonColor = false
+
+                local dropdownFrame = Instance.new("Frame")
+                dropdownFrame.Name = "dropdownFrame"
+                dropdownFrame.Parent = sectionFrame
+                dropdownFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                dropdownFrame.Size = UDim2.new(1, -20, 0, 0)
+                dropdownFrame.Position = UDim2.new(0, 10, 0, 70)
+                dropdownFrame.ClipsDescendants = true
+
+                local dropdownList = Instance.new("UIListLayout")
+                dropdownList.Parent = dropdownFrame
+                dropdownList.SortOrder = Enum.SortOrder.LayoutOrder
+                dropdownList.Padding = UDim.new(0, 5)
+
+                local dropdownOpen = false
+
+                -- Hover Effect
+                dropdown.MouseEnter:Connect(function()
+                    tween:Create(dropdown, tweeninfo(0.2), {
+                        BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+                    }):Play()
+                end)
+
+                dropdown.MouseLeave:Connect(function()
+                    tween:Create(dropdown, tweeninfo(0.2), {
+                        BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                    }):Play()
+                end)
+
+                -- Dropdown Click Event
+                dropdown.MouseButton1Click:Connect(function()
+                    dropdownOpen = not dropdownOpen
+                    if dropdownOpen then
+                        dropdownFrame.Size = UDim2.new(1, -20, 0, #options * 30)
+                        for i, option in pairs(options) do
+                            local optionButton = Instance.new("TextButton")
+                            optionButton.Name = "optionButton"
+                            optionButton.Parent = dropdownFrame
+                            optionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                            optionButton.Size = UDim2.new(1, 0, 0, 30)
+                            optionButton.Font = Enum.Font.Gotham
+                            optionButton.Text = option
+                            optionButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+                            optionButton.TextSize = 14
+                            optionButton.AutoButtonColor = false
+
+                            -- Hover Effect
+                            optionButton.MouseEnter:Connect(function()
+                                tween:Create(optionButton, tweeninfo(0.2), {
+                                    BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+                                }):Play()
+                            end)
+
+                            optionButton.MouseLeave:Connect(function()
+                                tween:Create(optionButton, tweeninfo(0.2), {
+                                    BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                                }):Play()
+                            end)
+
+                            -- Option Click Event
+                            optionButton.MouseButton1Click:Connect(function()
+                                dropdown.Text = dropText .. ": " .. option
+                                callback(option)
+                                dropdownOpen = false
+                                dropdownFrame.Size = UDim2.new(1, -20, 0, 0)
+                            end)
+                        end
+                    else
+                        dropdownFrame.Size = UDim2.new(1, -20, 0, 0)
+                    end
+                end)
+            end
+
+            function itemHandling:TextBox(textBoxText, callback)
+                textBoxText = textBoxText or "Textbox"
+                callback = callback or function() end
+
+                local textBox = Instance.new("TextBox")
+                textBox.Name = "textBox"
+                textBox.Parent = sectionFrame
+                textBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                textBox.Size = UDim2.new(1, -20, 0, 30)
+                textBox.Position = UDim2.new(0, 10, 0, 40)
+                textBox.Font = Enum.Font.Gotham
+                textBox.Text = textBoxText
+                textBox.TextColor3 = Color3.fromRGB(200, 200, 200)
+                textBox.TextSize = 14
+                textBox.ClearTextOnFocus = false
+
+                -- Hover Effect
+                textBox.Focused:Connect(function()
+                    tween:Create(textBox, tweeninfo(0.2), {
+                        BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+                    }):Play()
+                end)
+
+                textBox.FocusLost:Connect(function()
+                    tween:Create(textBox, tweeninfo(0.2), {
+                        BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                    }):Play()
+                    callback(textBox.Text)
+                end)
+            end
+
             return itemHandling
         end
 
