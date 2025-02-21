@@ -25,7 +25,6 @@ local function removeBlur()
     end
 end
 
--- Create loading screen
 local loadingScreen = Instance.new("ScreenGui")
 loadingScreen.Name = "LoadingScreen"
 loadingScreen.Parent = game.CoreGui
@@ -46,32 +45,32 @@ loadingText.Position = UDim2.new(0.5, 0, 0.5, 0)
 loadingText.AnchorPoint = Vector2.new(0.5, 0.5)
 loadingText.Size = UDim2.new(0, 200, 0, 50)
 loadingText.Font = Enum.Font.Gotham
-loadingText.Text = "AUTOMATION..."
+loadingText.Text = "" -- Start with an empty string
 loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
 loadingText.TextSize = 24
 loadingText.TextWrapped = true
 
--- Animation for the loading text
+
 local function animateLoadingText()
-    while true do
-        tween:Create(loadingText, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-            Position = UDim2.new(0.5, 0, 0.45, 0)
-        }):Play()
-        wait(0.5)
-        tween:Create(loadingText, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-            Position = UDim2.new(0.5, 0, 0.55, 0)
-        }):Play()
-        wait(0.5)
+    local text = "AUTOMATION..." -- The full text to display
+    local delayBetweenLetters = 0.1 -- Delay between each letter (in seconds)
+    loadingText.Text = "" -- Start with an empty string
+
+    for i = 1, #text do
+        loadingText.Text = string.sub(text, 1, i) -- Add one letter at a time
+        wait(delayBetweenLetters) -- Wait before adding the next letter
     end
 end
 
 -- Start the loading text animation
 coroutine.wrap(animateLoadingText)()
 
+
 -- Function to remove loading screen and load the main UI
 local function loadMainUI()
     wait(5) -- Wait for 5 seconds (loading time)
     loadingScreen:Destroy() -- Remove the loading screen
+    wait(1) -- Small delay before creating the main UI
     Fun.Create("Main UI Title") -- Load the main UI
 end
 
