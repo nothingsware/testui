@@ -10,6 +10,13 @@ local blur = Instance.new("BlurEffect")
 blur.Size = 24
 blur.Parent = game:GetService("Lighting")
 
+-- Add Glow Effect
+local glow = Instance.new("BloomEffect")
+glow.Intensity = 0.5
+glow.Size = 24
+glow.Threshold = 0.9
+glow.Parent = game:GetService("Lighting")
+
 -- Function to remove blur after 5 seconds
 local function removeBlur()
     wait(5) -- Wait for 5 seconds
@@ -18,12 +25,59 @@ local function removeBlur()
     end
 end
 
--- Add Glow Effect
-local glow = Instance.new("BloomEffect")
-glow.Intensity = 0.5
-glow.Size = 24
-glow.Threshold = 0.9
-glow.Parent = game:GetService("Lighting")
+-- Create loading screen
+local loadingScreen = Instance.new("ScreenGui")
+loadingScreen.Name = "LoadingScreen"
+loadingScreen.Parent = game.CoreGui
+loadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+local loadingFrame = Instance.new("Frame")
+loadingFrame.Name = "LoadingFrame"
+loadingFrame.Parent = loadingScreen
+loadingFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+loadingFrame.BackgroundTransparency = 0.5
+loadingFrame.Size = UDim2.new(1, 0, 1, 0)
+
+local loadingText = Instance.new("TextLabel")
+loadingText.Name = "LoadingText"
+loadingText.Parent = loadingFrame
+loadingText.BackgroundTransparency = 1
+loadingText.Position = UDim2.new(0.5, 0, 0.5, 0)
+loadingText.AnchorPoint = Vector2.new(0.5, 0.5)
+loadingText.Size = UDim2.new(0, 200, 0, 50)
+loadingText.Font = Enum.Font.Gotham
+loadingText.Text = "AUTOMATION..."
+loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadingText.TextSize = 24
+loadingText.TextWrapped = true
+
+-- Animation for the loading text
+local function animateLoadingText()
+    while true do
+        tween:Create(loadingText, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+            Position = UDim2.new(0.5, 0, 0.45, 0)
+        }):Play()
+        wait(0.5)
+        tween:Create(loadingText, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+            Position = UDim2.new(0.5, 0, 0.55, 0)
+        }):Play()
+        wait(0.5)
+    end
+end
+
+-- Start the loading text animation
+coroutine.wrap(animateLoadingText)()
+
+-- Function to remove loading screen and load the main UI
+local function loadMainUI()
+    wait(5) -- Wait for 5 seconds (loading time)
+    loadingScreen:Destroy() -- Remove the loading screen
+    Fun.Create("Main UI Title") -- Load the main UI
+end
+
+-- Call the removeBlur and loadMainUI functions
+removeBlur()
+loadMainUI()
 
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
@@ -1108,8 +1162,5 @@ function Fun.Create(title)
     end
     return tabHandling
 end
-
--- Call the removeBlur function after the GUI is created
-removeBlur()
 
 return Fun
