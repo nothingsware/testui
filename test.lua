@@ -76,7 +76,8 @@ end
 
 -- Call the removeBlur and loadMainUI functions
 removeBlur()
-loadMainUI()
+loadMainUI()  -- Ensure this is called with the correct capitalization
+
 
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
