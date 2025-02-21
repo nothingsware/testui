@@ -1,9 +1,8 @@
 local Fun = {}
 
 local input = game:GetService("UserInputService")
-local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
-local ts = game:GetService("TweenService")
+local runService = game:GetService("RunService")
 
 -- Utility function for gradients
 local function createGradient(parent, colorSeq, rotation)
@@ -14,6 +13,7 @@ local function createGradient(parent, colorSeq, rotation)
     return gradient
 end
 
+-- Dragging functionality
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
     local dragging = false
@@ -47,6 +47,7 @@ function Fun:DraggingEnabled(frame, parent)
     end)
 end
 
+-- Main UI creation function
 function Fun.Create(title)
     local nightmarefun = Instance.new("ScreenGui")
     local mainContainer = Instance.new("Frame")
@@ -179,28 +180,28 @@ function Fun.Create(title)
         -- Tab Interactions
         tabButton.MouseEnter:Connect(function()
             if currentTab ~= tabButton then
-                ts:Create(tabButton, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(220, 220, 220)}):Play()
+                tween:Create(tabButton, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(220, 220, 220)}):Play()
             end
         end)
 
         tabButton.MouseLeave:Connect(function()
             if currentTab ~= tabButton then
-                ts:Create(tabButton, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(180, 180, 180)}):Play()
+                tween:Create(tabButton, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(180, 180, 180)}):Play()
             end
         end)
 
         tabButton.MouseButton1Click:Connect(function()
             if currentTab then
-                ts:Create(currentTab, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(180, 180, 180)}):Play()
+                tween:Create(currentTab, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(180, 180, 180)}):Play()
                 currentTab.Parent.pageFrame.Visible = false
             end
             
             currentTab = tabButton
             pageFrame.Visible = true
-            ts:Create(tabButton, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(240, 240, 240)}):Play()
+            tween:Create(tabButton, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(240, 240, 240)}):Play()
             
             -- Animate underline
-            ts:Create(tabUnderline, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+            tween:Create(tabUnderline, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
                 Position = UDim2.new(0.5, 0, 0, tabButton.AbsolutePosition.Y - tabContainer.AbsolutePosition.Y + 30)
             }):Play()
         end)
@@ -274,11 +275,11 @@ function Fun.Create(title)
                 isExpanded = not isExpanded
                 if isExpanded then
                     originalSize = sectionListLayout.AbsoluteContentSize.Y + 10
-                    ts:Create(sectionContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, originalSize)}):Play()
-                    ts:Create(expandButton, TweenInfo.new(0.3), {Rotation = 180}):Play()
+                    tween:Create(sectionContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, originalSize)}):Play()
+                    tween:Create(expandButton, TweenInfo.new(0.3), {Rotation = 180}):Play()
                 else
-                    ts:Create(sectionContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, 0)}):Play()
-                    ts:Create(expandButton, TweenInfo.new(0.3), {Rotation = 0}):Play()
+                    tween:Create(sectionContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, 0)}):Play()
+                    tween:Create(expandButton, TweenInfo.new(0.3), {Rotation = 0}):Play()
                 end
                 updateSize()
             end)
@@ -317,17 +318,17 @@ function Fun.Create(title)
                 buttonText.TextSize = 14
                 buttonText.TextXAlignment = Enum.TextXAlignment.Center
 
-                local hoverAnim = ts:Create(buttonFrame.UIGradient, TweenInfo.new(0.2), {Rotation = 90})
-                local clickAnim = ts:Create(buttonFrame, TweenInfo.new(0.1), {Size = UDim2.new(1, -15, 0, 25)})
+                local hoverAnim = tween:Create(buttonFrame.UIGradient, TweenInfo.new(0.2), {Rotation = 90})
+                local clickAnim = tween:Create(buttonFrame, TweenInfo.new(0.1), {Size = UDim2.new(1, -15, 0, 25)})
 
                 buttonFrame.MouseEnter:Connect(function()
                     hoverAnim:Play()
-                    ts:Create(buttonStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(90, 90, 100)}):Play()
+                    tween:Create(buttonStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(90, 90, 100)}):Play()
                 end)
 
                 buttonFrame.MouseLeave:Connect(function()
                     hoverAnim:PlayBackward()
-                    ts:Create(buttonStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(60, 60, 70)}):Play()
+                    tween:Create(buttonStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(60, 60, 70)}):Play()
                 end)
 
                 buttonFrame.MouseButton1Down:Connect(function()
@@ -389,16 +390,16 @@ function Fun.Create(title)
 
                 local function updateToggle()
                     if isToggled then
-                        ts:Create(toggleKnob, tweenInfo, {Position = UDim2.new(1, -20, 0.2, 0)}):Play()
-                        ts:Create(toggleButton.UIGradient, tweenInfo, {
+                        tween:Create(toggleKnob, tweenInfo, {Position = UDim2.new(1, -20, 0.2, 0)}):Play()
+                        tween:Create(toggleButton.UIGradient, tweenInfo, {
                             Color = ColorSequence.new({
                                 ColorSequenceKeypoint.new(0, Color3.fromRGB(130, 100, 150)),
                                 ColorSequenceKeypoint.new(1, Color3.fromRGB(100, 70, 120))
                             })
                         }):Play()
                     else
-                        ts:Create(toggleKnob, tweenInfo, {Position = UDim2.new(0, 5, 0.2, 0)}):Play()
-                        ts:Create(toggleButton.UIGradient, tweenInfo, {
+                        tween:Create(toggleKnob, tweenInfo, {Position = UDim2.new(0, 5, 0.2, 0)}):Play()
+                        tween:Create(toggleButton.UIGradient, tweenInfo, {
                             Color = ColorSequence.new({
                                 ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 90)),
                                 ColorSequenceKeypoint.new(1, Color3.fromRGB(60, 60, 70))
@@ -491,8 +492,8 @@ function Fun.Create(title)
                     )
                     local value = math.floor(min + ((max - min) * pos.X.Scale))
                     
-                    ts:Create(sliderFill, TweenInfo.new(0.1), {Size = UDim2.new(pos.X.Scale, 0, 1, 0)}):Play()
-                    ts:Create(sliderKnob, TweenInfo.new(0.1), {Position = pos}):Play()
+                    tween:Create(sliderFill, TweenInfo.new(0.1), {Size = UDim2.new(pos.X.Scale, 0, 1, 0)}):Play()
+                    tween:Create(sliderKnob, TweenInfo.new(0.1), {Position = pos}):Play()
                     sliderValue.Text = tostring(value)
                     if callback then callback(value) end
                 end
@@ -514,6 +515,224 @@ function Fun.Create(title)
                         updateSlider(input)
                     end
                 end)
+            end
+
+            -- Dropdown Element
+            function elementHandling:Dropdown(dropText, options, callback)
+                local dropdownFrame = Instance.new("Frame")
+                local dropdownHeader = Instance.new("Frame")
+                local dropdownText = Instance.new("TextLabel")
+                local dropdownArrow = Instance.new("ImageButton")
+                local dropdownContent = Instance.new("Frame")
+                local dropdownListLayout = Instance.new("UIListLayout")
+
+                dropdownFrame.Name = "dropdownFrame"
+                dropdownFrame.Parent = sectionContent
+                dropdownFrame.BackgroundTransparency = 1
+                dropdownFrame.Size = UDim2.new(1, -10, 0, 30)
+                dropdownFrame.Position = UDim2.new(0, 5, 0, 0)
+
+                dropdownHeader.Name = "dropdownHeader"
+                dropdownHeader.Parent = dropdownFrame
+                dropdownHeader.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+                dropdownHeader.Size = UDim2.new(1, 0, 0, 30)
+                createGradient(dropdownHeader, ColorSequence.new({
+                    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 90)),
+                    ColorSequenceKeypoint.new(1, Color3.fromRGB(60, 60, 70))
+                }))
+
+                dropdownText.Name = "dropdownText"
+                dropdownText.Parent = dropdownHeader
+                dropdownText.BackgroundTransparency = 1
+                dropdownText.Size = UDim2.new(1, -40, 1, 0)
+                dropdownText.Font = Enum.Font.Gotham
+                dropdownText.Text = dropText
+                dropdownText.TextColor3 = Color3.fromRGB(200, 200, 200)
+                dropdownText.TextSize = 14
+                dropdownText.TextXAlignment = Enum.TextXAlignment.Left
+
+                dropdownArrow.Name = "dropdownArrow"
+                dropdownArrow.Parent = dropdownHeader
+                dropdownArrow.AnchorPoint = Vector2.new(0.5, 0.5)
+                dropdownArrow.Position = UDim2.new(1, -20, 0.5, 0)
+                dropdownArrow.Size = UDim2.new(0, 20, 0, 20)
+                dropdownArrow.Image = "rbxassetid://3926305904"
+                dropdownArrow.ImageRectOffset = Vector2.new(884, 284)
+                dropdownArrow.ImageRectSize = Vector2.new(36, 36)
+                dropdownArrow.ImageColor3 = Color3.fromRGB(150, 150, 150)
+
+                dropdownContent.Name = "dropdownContent"
+                dropdownContent.Parent = dropdownFrame
+                dropdownContent.BackgroundTransparency = 1
+                dropdownContent.Position = UDim2.new(0, 0, 0, 35)
+                dropdownContent.Size = UDim2.new(1, 0, 0, 0)
+                dropdownContent.ClipsDescendants = true
+
+                dropdownListLayout.Name = "dropdownListLayout"
+                dropdownListLayout.Parent = dropdownContent
+                dropdownListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+                dropdownListLayout.Padding = UDim.new(0, 5)
+
+                local isExpanded = false
+                local selectedOption = nil
+
+                local function updateDropdownSize()
+                    dropdownContent.Size = UDim2.new(1, 0, 0, dropdownListLayout.AbsoluteContentSize.Y)
+                end
+
+                dropdownArrow.MouseButton1Click:Connect(function()
+                    isExpanded = not isExpanded
+                    if isExpanded then
+                        tween:Create(dropdownContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, dropdownListLayout.AbsoluteContentSize.Y)}):Play()
+                        tween:Create(dropdownArrow, TweenInfo.new(0.3), {Rotation = 180}):Play()
+                    else
+                        tween:Create(dropdownContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, 0)}):Play()
+                        tween:Create(dropdownArrow, TweenInfo.new(0.3), {Rotation = 0}):Play()
+                    end
+                    updateSize()
+                end)
+
+                for _, option in pairs(options) do
+                    local optionButton = Instance.new("TextButton")
+                    optionButton.Name = "optionButton"
+                    optionButton.Parent = dropdownContent
+                    optionButton.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+                    optionButton.Size = UDim2.new(1, 0, 0, 25)
+                    optionButton.Font = Enum.Font.Gotham
+                    optionButton.Text = option
+                    optionButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+                    optionButton.TextSize = 14
+                    optionButton.AutoButtonColor = false
+
+                    optionButton.MouseEnter:Connect(function()
+                        tween:Create(optionButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(60, 60, 70)}):Play()
+                    end)
+
+                    optionButton.MouseLeave:Connect(function()
+                        tween:Create(optionButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(50, 50, 60)}):Play()
+                    end)
+
+                    optionButton.MouseButton1Click:Connect(function()
+                        selectedOption = option
+                        dropdownText.Text = option
+                        if callback then callback(option) end
+                        isExpanded = false
+                        tween:Create(dropdownContent, TweenInfo.new(0.3), {Size = UDim2.new(1, 0, 0, 0)}):Play()
+                        tween:Create(dropdownArrow, TweenInfo.new(0.3), {Rotation = 0}):Play()
+                        updateSize()
+                    end)
+                end
+            end
+
+            -- Textbox Element
+            function elementHandling:Textbox(textboxText, callback)
+                local textboxFrame = Instance.new("Frame")
+                local textboxInput = Instance.new("TextBox")
+                local textboxLabel = Instance.new("TextLabel")
+
+                textboxFrame.Name = "textboxFrame"
+                textboxFrame.Parent = sectionContent
+                textboxFrame.BackgroundTransparency = 1
+                textboxFrame.Size = UDim2.new(1, -10, 0, 30)
+                textboxFrame.Position = UDim2.new(0, 5, 0, 0)
+
+                textboxInput.Name = "textboxInput"
+                textboxInput.Parent = textboxFrame
+                textboxInput.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+                textboxInput.Size = UDim2.new(1, 0, 1, 0)
+                textboxInput.Font = Enum.Font.Gotham
+                textboxInput.Text = ""
+                textboxInput.PlaceholderText = textboxText
+                textboxInput.TextColor3 = Color3.fromRGB(200, 200, 200)
+                textboxInput.TextSize = 14
+                textboxInput.ClearTextOnFocus = false
+
+                textboxLabel.Name = "textboxLabel"
+                textboxLabel.Parent = textboxFrame
+                textboxLabel.BackgroundTransparency = 1
+                textboxLabel.Size = UDim2.new(1, 0, 1, 0)
+                textboxLabel.Font = Enum.Font.Gotham
+                textboxLabel.Text = textboxText
+                textboxLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+                textboxLabel.TextSize = 14
+                textboxLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+                textboxInput.FocusLost:Connect(function(enterPressed)
+                    if enterPressed then
+                        if callback then callback(textboxInput.Text) end
+                        textboxInput.Text = ""
+                    end
+                end)
+            end
+
+            -- Keybind Element
+            function elementHandling:Keybind(keybindText, defaultKey, callback)
+                local keybindFrame = Instance.new("Frame")
+                local keybindButton = Instance.new("TextButton")
+                local keybindLabel = Instance.new("TextLabel")
+
+                keybindFrame.Name = "keybindFrame"
+                keybindFrame.Parent = sectionContent
+                keybindFrame.BackgroundTransparency = 1
+                keybindFrame.Size = UDim2.new(1, -10, 0, 30)
+                keybindFrame.Position = UDim2.new(0, 5, 0, 0)
+
+                keybindButton.Name = "keybindButton"
+                keybindButton.Parent = keybindFrame
+                keybindButton.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+                keybindButton.Size = UDim2.new(0, 100, 1, 0)
+                keybindButton.Font = Enum.Font.Gotham
+                keybindButton.Text = defaultKey or "None"
+                keybindButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+                keybindButton.TextSize = 14
+                keybindButton.AutoButtonColor = false
+
+                keybindLabel.Name = "keybindLabel"
+                keybindLabel.Parent = keybindFrame
+                keybindLabel.BackgroundTransparency = 1
+                keybindLabel.Size = UDim2.new(1, -110, 1, 0)
+                keybindLabel.Font = Enum.Font.Gotham
+                keybindLabel.Text = keybindText
+                keybindLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+                keybindLabel.TextSize = 14
+                keybindLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+                local isListening = false
+
+                keybindButton.MouseButton1Click:Connect(function()
+                    isListening = true
+                    keybindButton.Text = "..."
+                end)
+
+                input.InputBegan:Connect(function(input)
+                    if isListening and input.UserInputType == Enum.UserInputType.Keyboard then
+                        isListening = false
+                        keybindButton.Text = input.KeyCode.Name
+                        if callback then callback(input.KeyCode) end
+                    end
+                end)
+            end
+
+            -- Label Element
+            function elementHandling:Label(labelText)
+                local labelFrame = Instance.new("Frame")
+                local labelTextLabel = Instance.new("TextLabel")
+
+                labelFrame.Name = "labelFrame"
+                labelFrame.Parent = sectionContent
+                labelFrame.BackgroundTransparency = 1
+                labelFrame.Size = UDim2.new(1, -10, 0, 20)
+                labelFrame.Position = UDim2.new(0, 5, 0, 0)
+
+                labelTextLabel.Name = "labelTextLabel"
+                labelTextLabel.Parent = labelFrame
+                labelTextLabel.BackgroundTransparency = 1
+                labelTextLabel.Size = UDim2.new(1, 0, 1, 0)
+                labelTextLabel.Font = Enum.Font.Gotham
+                labelTextLabel.Text = labelText
+                labelTextLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+                labelTextLabel.TextSize = 14
+                labelTextLabel.TextXAlignment = Enum.TextXAlignment.Left
             end
 
             return elementHandling
