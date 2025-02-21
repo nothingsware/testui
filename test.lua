@@ -50,7 +50,6 @@ loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
 loadingText.TextSize = 24
 loadingText.TextWrapped = true
 
-
 local function animateLoadingText()
     local text = "AUTOMATION..." -- The full text to display
     local delayBetweenLetters = 0.1 -- Delay between each letter (in seconds)
@@ -65,7 +64,6 @@ end
 -- Start the loading text animation
 coroutine.wrap(animateLoadingText)()
 
-
 -- Function to remove loading screen and load the main UI
 local function loadMainUI()
     wait(5) -- Wait for 5 seconds (loading time)
@@ -77,7 +75,6 @@ end
 -- Call the removeBlur and loadMainUI functions
 removeBlur()
 loadMainUI()  -- Ensure this is called with the correct capitalization
-
 
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
