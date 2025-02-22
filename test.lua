@@ -1,7 +1,17 @@
 local Fun = {}
 
 local Players = game:GetService("Players")
+if not Players then
+    warn("its werid fuck ugc")
+    return
+end
+
 local LocalPlayer = Players.LocalPlayer
+if not LocalPlayer then
+    warn("its werid fuck ugc")
+    return
+end
+
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
