@@ -852,7 +852,7 @@ function Fun.Create(title)
                 local TextLabel = Instance.new("TextLabel")
             
                 TextLabel.Parent = sectionFrame
-                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) =
+                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60)
                 TextLabel.BackgroundTransparency = 1.000
                 TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
                 TextLabel.Size = UDim2.new(0, 260, 0, 27)
