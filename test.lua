@@ -469,90 +469,91 @@ function Fun.Create(title)
                 local tog = false
                 togInfo = togInfo or "Toggle"
                 callback = callback or function() end
-
+            
                 local toggleFrame = Instance.new("Frame")
                 local checkBox = Instance.new("ImageButton")
                 local UIListLayout = Instance.new("UIListLayout")
                 local checkBoxInfo = Instance.new("TextLabel")
-
+            
                 toggleFrame.Name = "toggleFrame"
                 toggleFrame.Parent = sectionFrame
                 toggleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 toggleFrame.BackgroundTransparency = 1.000
                 toggleFrame.Position = UDim2.new(0.0354609936, 0, 0.344827592, 0)
                 toggleFrame.Size = UDim2.new(0, 262, 0, 25)
-
+            
                 checkBox.Name = "checkBox"
                 checkBox.Parent = toggleFrame
-                checkBox.BackgroundColor3 = Color3.fromRGB(47, 47, 56)
+                checkBox.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker bluish color
                 checkBox.BackgroundTransparency = 1.000
                 checkBox.Position = UDim2.new(-0.0381679386, 0, 0.0263157934, 0)
                 checkBox.Size = UDim2.new(0, 25, 0, 25)
                 checkBox.ZIndex = 2
                 checkBox.Image = "rbxassetid://3926311105"
-                checkBox.ImageColor3 = Color3.fromRGB(62, 62, 74)
+                checkBox.ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                 checkBox.ImageRectOffset = Vector2.new(940, 784)
                 checkBox.ImageRectSize = Vector2.new(48, 48)
-
+            
                 UIListLayout.Parent = toggleFrame
                 UIListLayout.FillDirection = Enum.FillDirection.Horizontal
                 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                 UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
                 UIListLayout.Padding = UDim.new(0, 3)
-
+            
                 checkBoxInfo.Name = "checkBoxInfo"
                 checkBoxInfo.Parent = toggleFrame
-                checkBoxInfo.BackgroundColor3 = Color3.fromRGB(47, 47, 56)
+                checkBoxInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 checkBoxInfo.BackgroundTransparency = 1.000
                 checkBoxInfo.Position = UDim2.new(0.106870227, 0, -0.157894731, 0)
                 checkBoxInfo.Size = UDim2.new(0, 200, 0, 19)
                 checkBoxInfo.Font = Enum.Font.Gotham
                 checkBoxInfo.Text = togInfo
-                checkBoxInfo.TextColor3 = Color3.fromRGB(62, 62, 74)
+                checkBoxInfo.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                 checkBoxInfo.TextSize = 14.000
                 checkBoxInfo.TextXAlignment = Enum.TextXAlignment.Left
-
+            
                 local clickDe = false
                 local hoverDe = false
-
+            
                 checkBox.MouseEnter:Connect(function()
                     if not tog then
                         game.TweenService:Create(checkBox, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                            ImageColor3 = Color3.fromRGB(53, 53, 63)
+                            ImageColor3 = Color3.fromRGB(80, 120, 160) -- Darker bluish hover
                         }):Play()
                     else
                         game.TweenService:Create(checkBox, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                            ImageColor3 = Color3.fromRGB(89, 68, 102)
+                            ImageColor3 = Color3.fromRGB(120, 170, 220) -- Lighter bluish hover
                         }):Play()
                     end
                 end)
-
+            
                 checkBox.MouseLeave:Connect(function()
                     if not tog then
-                        checkBox.Parent:TweenSize(UDim2.new(0, 262,0, 25), "InOut", "Linear", 0.08)
+                        checkBox.Parent:TweenSize(UDim2.new(0, 262, 0, 25), "InOut", "Linear", 0.08)
                         game.TweenService:Create(checkBox, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                            ImageColor3 = Color3.fromRGB(62, 62, 74)
+                            ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                         }):Play()
                     else
-                        checkBox.Parent:TweenSize(UDim2.new(0, 262,0, 25), "InOut", "Linear", 0.08)
+                        checkBox.Parent:TweenSize(UDim2.new(0, 262, 0, 25), "InOut", "Linear", 0.08)
                         game.TweenService:Create(checkBox, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                            ImageColor3 = Color3.fromRGB(127, 97, 145)
+                            ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                         }):Play()
                     end
                 end)
-
+            
                 checkBox.MouseButton1Down:Connect(function()
                     if not hoverDe then
                         hoverDe = true
-                        checkBox.Parent:TweenSize(UDim2.new(0, 255,0, 25), "InOut", "Linear", 0.08)
+                        checkBox.Parent:TweenSize(UDim2.new(0, 255, 0, 25), "InOut", "Linear", 0.08)
                         wait(0.8)
                         hoverDe = false
                     end
                 end)
+            
                 checkBox.MouseButton1Up:Connect(function()
-                    checkBox.Parent:TweenSize(UDim2.new(0, 262,0, 25), "InOut", "Linear", 0.08)
+                    checkBox.Parent:TweenSize(UDim2.new(0, 262, 0, 25), "InOut", "Linear", 0.08)
                 end)
-
+            
                 checkBox.MouseButton1Click:Connect(function()
                     if not clickDe then
                         clickDe = true
@@ -560,19 +561,19 @@ function Fun.Create(title)
                         callback(tog)
                         if tog then
                             game.TweenService:Create(checkBox.Parent.checkBoxInfo, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                TextColor3 = Color3.fromRGB(127, 97, 145)
+                                TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                             }):Play()
                             checkBox.ImageRectOffset = Vector2.new(4, 836)
                             game.TweenService:Create(checkBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                ImageColor3 = Color3.fromRGB(127, 97, 145)
+                                ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                             }):Play()
                         else
                             game.TweenService:Create(checkBox.Parent.checkBoxInfo, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                TextColor3 = Color3.fromRGB(62, 62, 74)
+                                TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                             }):Play()
                             checkBox.ImageRectOffset = Vector2.new(940, 784)
                             game.TweenService:Create(checkBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                ImageColor3 = Color3.fromRGB(62, 62, 74)
+                                ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                             }):Play()
                         end
                         wait(0.8)
@@ -584,63 +585,62 @@ function Fun.Create(title)
             function itemHandling:TextBox(textInfo, callback)
                 textInfo = textInfo or "Type here"
                 callback = callback or function() end
-
+            
                 local textBoxFrame = Instance.new("Frame")
                 local UIListLayout = Instance.new("UIListLayout")
                 local TextBox = Instance.new("TextBox")
                 local UICorner = Instance.new("UICorner")
-
+            
                 textBoxFrame.Name = "textBoxFrame"
                 textBoxFrame.Parent = sectionFrame
-                textBoxFrame.BackgroundColor3 = Color3.fromRGB(43, 43, 52)
+                textBoxFrame.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker bluish color
                 textBoxFrame.BackgroundTransparency = 1.000
                 textBoxFrame.Position = UDim2.new(0.0354609936, 0, 0.344827592, 0)
                 textBoxFrame.Size = UDim2.new(0, 262, 0, 28)
-
+            
                 UIListLayout.Parent = textBoxFrame
                 UIListLayout.FillDirection = Enum.FillDirection.Horizontal
                 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                 UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
                 UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
                 UIListLayout.Padding = UDim.new(0, 3)
-
+            
                 TextBox.Parent = textBoxFrame
-                TextBox.BackgroundColor3 = Color3.fromRGB(43, 43, 52)
+                TextBox.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker bluish color
                 TextBox.Position = UDim2.new(0, 0, 0.106060609, 0)
                 TextBox.Size = UDim2.new(0, 262, 0, 26)
                 TextBox.ClearTextOnFocus = false
                 TextBox.Font = Enum.Font.SourceSans
                 TextBox.PlaceholderText = textInfo
                 TextBox.Text = ""
-                TextBox.TextColor3 = Color3.fromRGB(127, 97, 145)
+                TextBox.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                 TextBox.TextSize = 16.000
                 TextBox.TextWrapped = true
-
+            
                 UICorner.CornerRadius = UDim.new(0, 5)
                 UICorner.Parent = TextBox
-
+            
                 function anim(property)
                     if property == "Text" then
-                        TextBox:TweenSize(UDim2.new(0, 250,0, 22), "InOut", "Linear", 0.1, true)
+                        TextBox:TweenSize(UDim2.new(0, 250, 0, 22), "InOut", "Linear", 0.1, true)
                         wait(0.18)
-                        TextBox:TweenSize(UDim2.new(0, 262,0, 26), "InOut", "Linear", 0.1, true)
+                        TextBox:TweenSize(UDim2.new(0, 262, 0, 26), "InOut", "Linear", 0.1, true)
                     end
                 end
                 TextBox.Changed:Connect(anim)
-
+            
                 TextBox.FocusLost:Connect(function(EnterPressed)
                     if not EnterPressed then return end
                     callback(TextBox.Text)
-                    TextBox:TweenSize(UDim2.new(0, 250,0, 22), "InOut", "Linear", 0.1, true)
+                    TextBox:TweenSize(UDim2.new(0, 250, 0, 22), "InOut", "Linear", 0.1, true)
                     wait(0.18)
-                    TextBox:TweenSize(UDim2.new(0, 262,0, 26), "InOut", "Linear", 0.1, true)
+                    TextBox:TweenSize(UDim2.new(0, 262, 0, 26), "InOut", "Linear", 0.1, true)
                     TextBox.Text = ""  
                 end)
             end
-
             function itemHandling:Slider(sliderInf, maxvalue, minvalue, callback)
                 local sliderfunc = {}
-
+            
                 local sliderFrame = Instance.new("Frame")
                 local sliderIinfo = Instance.new("TextLabel")
                 local sliderBtn = Instance.new("TextButton")
@@ -652,14 +652,14 @@ function Fun.Create(title)
                 sliderInf = sliderInf or "Slider"
                 minvalue = minvalue or 0
                 maxvalue = maxvalue or 500
-
+            
                 sliderFrame.Name = "sliderFrame"
                 sliderFrame.Parent = sectionFrame
                 sliderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 sliderFrame.BackgroundTransparency = 1.000
                 sliderFrame.Position = UDim2.new(0.0354609936, 0, 0.658653855, 0)
                 sliderFrame.Size = UDim2.new(0, 262, 0, 32)
-
+            
                 sliderIinfo.Name = "sliderIinfo"
                 sliderIinfo.Parent = sliderFrame
                 sliderIinfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -668,13 +668,13 @@ function Fun.Create(title)
                 sliderIinfo.Size = UDim2.new(0, 169, 0, 18)
                 sliderIinfo.Font = Enum.Font.Gotham
                 sliderIinfo.Text = sliderInf
-                sliderIinfo.TextColor3 = Color3.fromRGB(127, 97, 145)
+                sliderIinfo.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                 sliderIinfo.TextSize = 14.000
                 sliderIinfo.TextXAlignment = Enum.TextXAlignment.Left
-
+            
                 sliderBtn.Name = "sliderBtn"
                 sliderBtn.Parent = sliderFrame
-                sliderBtn.BackgroundColor3 = Color3.fromRGB(47, 47, 56)
+                sliderBtn.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker bluish color
                 sliderBtn.BorderSizePixel = 0
                 sliderBtn.Position = UDim2.new(0, 0, 0.616923094, 0)
                 sliderBtn.Size = UDim2.new(0, 262, 0, 9)
@@ -684,24 +684,24 @@ function Fun.Create(title)
                 sliderBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
                 sliderBtn.TextSize = 14.000
                 sliderBtn.ClipsDescendants = true
-
+            
                 UIListLayout.Parent = sliderBtn
                 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                 UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-
+            
                 SliderDrag.Name = "SliderDrag"
                 SliderDrag.Parent = sliderBtn
-                SliderDrag.BackgroundColor3 = Color3.fromRGB(127, 97, 145)
-                SliderDrag.BorderColor3 = Color3.fromRGB(127, 97, 145)
+                SliderDrag.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
+                SliderDrag.BorderColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                 SliderDrag.BorderSizePixel = 0
                 SliderDrag.Size = UDim2.new(0, 0, 0, 9)
-
+            
                 UICorner.CornerRadius = UDim.new(0, 99)
                 UICorner.Parent = SliderDrag
-
+            
                 UICorner_1.CornerRadius = UDim.new(0, 99)
                 UICorner_1.Parent = sliderBtn
-
+            
                 sliderBox.Name = "sliderBox"
                 sliderBox.Parent = sliderFrame
                 sliderBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -711,12 +711,13 @@ function Fun.Create(title)
                 sliderBox.ClearTextOnFocus = false
                 sliderBox.Font = Enum.Font.Gotham
                 sliderBox.Text = minvalue
-                sliderBox.TextColor3 = Color3.fromRGB(96, 96, 115)
+                sliderBox.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                 sliderBox.TextScaled = true
                 sliderBox.TextSize = 14.000
                 sliderBox.TextWrapped = true
                 sliderBox.TextXAlignment = Enum.TextXAlignment.Right
                 sliderBox.TextEditable = true
+            
 
                 local mouse = game.Players.LocalPlayer:GetMouse()
                 local uis = game:GetService("UserInputService")
