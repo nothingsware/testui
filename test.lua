@@ -1,4 +1,4 @@
- local Fun = {}
+local Fun = {}
 
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
@@ -137,6 +137,7 @@ function Fun.Create(title)
             nightmarefun.Enabled = not nightmarefun.Enabled
         end
     end)
+
     nightmares.Name = "nightmares"
     nightmares.Parent = mainSide
     nightmares.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -193,14 +194,15 @@ function Fun.Create(title)
     pages.Name = "pages"
     pages.Parent = allPages
 
-local function truncateText(text, maxLength)
-    if text:len() > maxLength then
-        return text:sub(1, maxLength) .. "..."
+    local function truncateText(text, maxLength)
+        if text:len() > maxLength then
+            return text:sub(1, maxLength) .. "..."
+        end
+        return text
     end
-    return text
-end
+    
+    nightmares.Text = " " .. truncateText(title, 20) -- Truncate to 20 characters
 
-nightmares.Text = " " .. truncateText(title, 20) 
     local tabHandling = {}
 
     function tabHandling:Tab(tabText)
@@ -647,7 +649,223 @@ nightmares.Text = " " .. truncateText(title, 20)
                     TextBox.Text = ""  
                 end)
             end
-           
+            function itemHandling:Slider(sliderInf, maxvalue, minvalue, callback)
+                local sliderfunc = {}
+            
+                local sliderFrame = Instance.new("Frame")
+                local sliderIinfo = Instance.new("TextLabel")
+                local sliderBtn = Instance.new("TextButton")
+                local UIListLayout = Instance.new("UIListLayout")
+                local SliderDrag = Instance.new("Frame")
+                local UICorner = Instance.new("UICorner")
+                local UICorner_1 = Instance.new("UICorner")
+                local sliderBox = Instance.new("TextBox")
+            
+                sliderInf = sliderInf or "Slider"
+                minvalue = minvalue or 0
+                maxvalue = maxvalue or 500
+            
+                sliderFrame.Name = "sliderFrame"
+                sliderFrame.Parent = sectionFrame
+                sliderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                sliderFrame.BackgroundTransparency = 1.000
+                sliderFrame.Position = UDim2.new(0.0354609936, 0, 0.658653855, 0)
+                sliderFrame.Size = UDim2.new(0, 262, 0, 32)
+            
+                sliderIinfo.Name = "sliderIinfo"
+                sliderIinfo.Parent = sliderFrame
+                sliderIinfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                sliderIinfo.BackgroundTransparency = 1.000
+                sliderIinfo.Position = UDim2.new(0, 0, -0.0102040814, 0)
+                sliderIinfo.Size = UDim2.new(0, 169, 0, 18)
+                sliderIinfo.Font = Enum.Font.Gotham
+                sliderIinfo.Text = sliderInf
+                sliderIinfo.TextColor3 = Color3.fromRGB(200, 200, 200) -- Light gray text for better visibility
+                sliderIinfo.TextSize = 14.000
+                sliderIinfo.TextXAlignment = Enum.TextXAlignment.Left
+            
+                sliderBtn.Name = "sliderBtn"
+                sliderBtn.Parent = sliderFrame
+                sliderBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Darker background for the slider track
+                sliderBtn.BorderSizePixel = 0
+                sliderBtn.Position = UDim2.new(0, 0, 0.616923094, 0)
+                sliderBtn.Size = UDim2.new(0, 262, 0, 9)
+                sliderBtn.AutoButtonColor = false
+                sliderBtn.Font = Enum.Font.SourceSans
+                sliderBtn.Text = ""
+                sliderBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+                sliderBtn.TextSize = 14.000
+                sliderBtn.ClipsDescendants = true
+            
+                UIListLayout.Parent = sliderBtn
+                UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+                UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+            
+                SliderDrag.Name = "SliderDrag"
+                SliderDrag.Parent = sliderBtn
+                SliderDrag.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color for the drag handle
+                SliderDrag.BorderSizePixel = 0
+                SliderDrag.Size = UDim2.new(0, 0, 0, 9)
+            
+                UICorner.CornerRadius = UDim.new(0, 99)
+                UICorner.Parent = SliderDrag
+            
+                UICorner_1.CornerRadius = UDim.new(0, 99)
+                UICorner_1.Parent = sliderBtn
+            
+                sliderBox.Name = "sliderBox"
+                sliderBox.Parent = sliderFrame
+                sliderBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                sliderBox.BackgroundTransparency = 1.000
+                sliderBox.Position = UDim2.new(0.645038188, 0, 0.0769230798, 0)
+                sliderBox.Size = UDim2.new(0, 92, 0, 14)
+                sliderBox.ClearTextOnFocus = false
+                sliderBox.Font = Enum.Font.Gotham
+                sliderBox.Text = minvalue
+                sliderBox.TextColor3 = Color3.fromRGB(200, 200, 200) -- Light gray text for better visibility
+                sliderBox.TextScaled = true
+                sliderBox.TextSize = 14.000
+                sliderBox.TextWrapped = true
+                sliderBox.TextXAlignment = Enum.TextXAlignment.Right
+                sliderBox.TextEditable = true
+            
+                local mouse = game.Players.LocalPlayer:GetMouse()
+                local uis = game:GetService("UserInputService")
+                local Value
+            
+                sliderBtn.MouseButton1Down:Connect(function()
+                    Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue)) or 0
+                    pcall(function()
+                        callback(Value)
+                    end)
+                    SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
+                    local moveconnection = mouse.Move:Connect(function()
+                        sliderBox.Text = Value
+                        Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue))
+                        pcall(function()
+                            callback(Value)
+                        end)
+                        SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
+                    end)
+                    local releaseconnection = uis.InputEnded:Connect(function(Mouse)
+                        if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+                            Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue))
+                            pcall(function()
+                                callback(Value)
+                            end)
+                            sliderBox.Text = Value
+                            SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
+                            moveconnection:Disconnect()
+                            releaseconnection:Disconnect()
+                        end
+                    end)
+                end)
+            
+                function set(property)
+                    if property == "Text" then
+                        if tonumber(sliderBox.Text) then 
+                            if tonumber(sliderBox.Text) <= maxvalue then
+                                Value = sliderBox.Text
+                                SliderDrag:TweenSize(UDim2.new(((tonumber(sliderBox.Text) or minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                                pcall(function()
+                                    callback(Value)
+                                end)
+                            end
+                            if tonumber(sliderBox.Text) > maxvalue then
+                                sliderBox.Text = maxvalue
+                                Value = maxvalue
+                                SliderDrag:TweenSize(UDim2.new(((maxvalue or minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                                pcall(function()
+                                    callback(Value)
+                                end)
+                            end
+                            if tonumber(sliderBox.Text) >= minvalue then
+                                Value = sliderBox.Text
+                                SliderDrag:TweenSize(UDim2.new(((tonumber(sliderBox.Text) or minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                                pcall(function()
+                                    callback(Value)
+                                end)
+                            end
+                            if tonumber(sliderBox.Text) < minvalue then
+                                Value = minvalue
+                                SliderDrag.Size = UDim2.new(((minvalue or minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9)
+                                pcall(function()
+                                    callback(Value)
+                                end)
+                            end
+                        else
+                            sliderBox.Text = ""
+                        end
+                    end
+                end
+            
+                sliderBox.Focused:Connect(function()
+                    sliderBox.Changed:Connect(set)
+                end)
+            
+                sliderBox.FocusLost:Connect(function(enterP)
+                    if not enterP then
+                        if sliderBox.Text == "" then
+                            sliderBox.Text = minvalue
+                            Value = minvalue
+                            SliderDrag:TweenSize(UDim2.new(((minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                            pcall(function()
+                                callback(Value)
+                            end)
+                        end
+                        if tonumber(sliderBox.Text) > tonumber(maxvalue) then
+                            Value = maxvalue
+                            sliderBox.Text = maxvalue
+                            SliderDrag:TweenSize(UDim2.new(((maxvalue or minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                            pcall(function()
+                                callback(Value)
+                            end)
+                        else
+                            Value = tonumber(sliderBox.Text)
+                        end
+                        if tonumber(sliderBox.Text) < minvalue then
+                            sliderBox.Text = minvalue
+                            Value = minvalue
+                            SliderDrag:TweenSize(UDim2.new(((minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                            pcall(function()
+                                callback(Value)
+                            end)
+                        else
+                            Value = tonumber(sliderBox.Text)
+                        end
+                    end
+                    if tonumber(sliderBox.Text) > maxvalue then
+                        sliderBox.Text = maxvalue
+                        Value = maxvalue
+                        SliderDrag:TweenSize(UDim2.new(((maxvalue or minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                        pcall(function()
+                            callback(Value)
+                        end)
+                    else
+                        Value = tonumber(sliderBox.Text)
+                    end
+                    if tonumber(sliderBox.Text) < minvalue then
+                        sliderBox.Text = minvalue
+                        Value = minvalue
+                        SliderDrag.Size = UDim2.new(((minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9)
+                        pcall(function()
+                            callback(Value)
+                        end)
+                    else
+                        Value = tonumber(sliderBox.Text)
+                    end
+                    if sliderBox.Text == "" then
+                        sliderBox.Text = minvalue
+                        Value = minvalue
+                        SliderDrag:TweenSize(UDim2.new(((minvalue) - minvalue) / (maxvalue - minvalue), 0, 0, 9), "InOut", "Linear", 0.05, true)
+                        pcall(function()
+                            callback(Value)
+                        end)
+                    end
+                end)
+            
+                return sliderfunc
+            end
             function itemHandling:Label(txtLabel)
                 txtLabel = txtLabel or "nightmare.fun"
                 local TextLabel = Instance.new("TextLabel")
