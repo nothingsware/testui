@@ -4,25 +4,12 @@ local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
-
-local blur = Instance.new("BlurEffect")
-blur.Size = 24
-blur.Parent = game:GetService("Lighting")
-
 local glow = Instance.new("BloomEffect")
 glow.Intensity = 0.5
 glow.Size = 24
 glow.Threshold = 0.9
 glow.Parent = game:GetService("Lighting")
 
-local function removeBlur()
-    wait(3)
-    if blur then
-        blur:Destroy()
-    end
-end
-
-removeBlur()
 
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
@@ -78,15 +65,6 @@ function Fun.Create(title)
     nightmarefun.Parent = game.CoreGui
     nightmarefun.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     nightmarefun.ResetOnSpawn = false
-
-    local backgroundBlur = Instance.new("Frame")
-    backgroundBlur.Name = "BackgroundBlur"
-    backgroundBlur.Parent = nightmarefun
-    backgroundBlur.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    backgroundBlur.BackgroundTransparency = 0.5
-    backgroundBlur.Size = UDim2.new(1, 0, 1, 0)
-    backgroundBlur.Position = UDim2.new(0, 0, 0, 0)
-    backgroundBlur.ZIndex = -1
 
     Shadow.Name = "Shadow"
     Shadow.Parent = nightmarefun
