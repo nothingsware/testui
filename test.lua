@@ -241,25 +241,7 @@ function Fun.Create(title)
         end)
 
         local sectionHandling = {}
-        function itemHandling:Label(txtLabel, options)
-            txtLabel = txtLabel or "Label"
-            options = options or {}
-        
-            local TextLabel = Instance.new("TextLabel")
-        
-            TextLabel.Parent = sectionFrame
-            TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) -- Dark blue background
-            TextLabel.BackgroundTransparency = 1.000
-            TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
-            TextLabel.Size = UDim2.new(0, 260, 0, 27)
-            TextLabel.Font = Enum.Font.Gotham
-            TextLabel.Text = txtLabel
-            TextLabel.TextColor3 = options.TextColor3 or Color3.fromRGB(200, 220, 255) -- Default to bright blue text
-            TextLabel.TextSize = options.TextSize or 14.000
-            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-        
-            return TextLabel
-        end
+
         function sectionHandling:Section(sectionName)
             sectionName = sectionName or "Section"
 
@@ -866,17 +848,17 @@ function Fun.Create(title)
             end
             
             function itemHandling:Label(txtLabel)
-                txtLabel = txtLabel or "nightmare.fun"
+                txtLabel = txtLabel or "Label"
                 local TextLabel = Instance.new("TextLabel")
             
                 TextLabel.Parent = sectionFrame
-                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) -- Dark blue background
+                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) 
                 TextLabel.BackgroundTransparency = 1.000
                 TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
                 TextLabel.Size = UDim2.new(0, 260, 0, 27)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = txtLabel
-                TextLabel.TextColor3 = Color3.fromRGB(200, 220, 255) -- Bright blue text
+                TextLabel.TextColor3 = Color3.fromRGB(200, 220, 255)
                 TextLabel.TextSize = 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             end
