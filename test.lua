@@ -676,13 +676,13 @@ function Fun.Create(title)
                 sliderIinfo.Size = UDim2.new(0, 169, 0, 18)
                 sliderIinfo.Font = Enum.Font.Gotham
                 sliderIinfo.Text = sliderInf
-                sliderIinfo.TextColor3 = Color3.fromRGB(200, 200, 200) -- Light gray text for better visibility
+                sliderIinfo.TextColor3 = Color3.fromRGB(200, 200, 200)
                 sliderIinfo.TextSize = 14.000
                 sliderIinfo.TextXAlignment = Enum.TextXAlignment.Left
             
                 sliderBtn.Name = "sliderBtn"
                 sliderBtn.Parent = sliderFrame
-                sliderBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Darker background for the slider track
+                sliderBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
                 sliderBtn.BorderSizePixel = 0
                 sliderBtn.Position = UDim2.new(0, 0, 0.616923094, 0)
                 sliderBtn.Size = UDim2.new(0, 262, 0, 9)
@@ -699,7 +699,7 @@ function Fun.Create(title)
             
                 SliderDrag.Name = "SliderDrag"
                 SliderDrag.Parent = sliderBtn
-                SliderDrag.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color for the drag handle
+                SliderDrag.BackgroundColor3 = Color3.fromRGB(100, 150, 200)
                 SliderDrag.BorderSizePixel = 0
                 SliderDrag.Size = UDim2.new(0, 0, 0, 9)
             
@@ -718,7 +718,7 @@ function Fun.Create(title)
                 sliderBox.ClearTextOnFocus = false
                 sliderBox.Font = Enum.Font.Gotham
                 sliderBox.Text = minvalue
-                sliderBox.TextColor3 = Color3.fromRGB(200, 200, 200) -- Light gray text for better visibility
+                sliderBox.TextColor3 = Color3.fromRGB(200, 200, 200)
                 sliderBox.TextScaled = true
                 sliderBox.TextSize = 14.000
                 sliderBox.TextWrapped = true
@@ -729,13 +729,17 @@ function Fun.Create(title)
                 local uis = game:GetService("UserInputService")
                 local Value
             
+                local moveConnection
+                local releaseConnection
+            
                 sliderBtn.MouseButton1Down:Connect(function()
                     Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue)) or 0
                     pcall(function()
                         callback(Value)
                     end)
                     SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
-                    local moveconnection = mouse.Move:Connect(function()
+            
+                    moveConnection = mouse.Move:Connect(function()
                         sliderBox.Text = Value
                         Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue))
                         pcall(function()
@@ -743,7 +747,8 @@ function Fun.Create(title)
                         end)
                         SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
                     end)
-                    local releaseconnection = uis.InputEnded:Connect(function(Mouse)
+            
+                    releaseConnection = uis.InputEnded:Connect(function(Mouse)
                         if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
                             Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue))
                             pcall(function()
@@ -751,8 +756,8 @@ function Fun.Create(title)
                             end)
                             sliderBox.Text = Value
                             SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
-                            moveconnection:Disconnect()
-                            releaseconnection:Disconnect()
+                            moveConnection:Disconnect()
+                            releaseConnection:Disconnect()
                         end
                     end)
                 end)
@@ -862,6 +867,7 @@ function Fun.Create(title)
             
                 return sliderfunc
             end
+            
             function itemHandling:Label(txtLabel)
                 txtLabel = txtLabel or "nightmare.fun"
                 local TextLabel = Instance.new("TextLabel")
