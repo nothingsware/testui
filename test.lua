@@ -79,13 +79,13 @@ function Fun.Create(title)
     nightmarefun.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     nightmarefun.ResetOnSpawn = false
 
-    -- Add Blur to Background
     local backgroundBlur = Instance.new("Frame")
     backgroundBlur.Name = "BackgroundBlur"
     backgroundBlur.Parent = nightmarefun
     backgroundBlur.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     backgroundBlur.BackgroundTransparency = 0.5
     backgroundBlur.Size = UDim2.new(1, 0, 1, 0)
+    backgroundBlur.Position = UDim2.new(0, 0, 0, 0)
     backgroundBlur.ZIndex = -1
 
     Shadow.Name = "Shadow"
