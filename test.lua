@@ -649,6 +649,7 @@ function Fun.Create(title)
                     TextBox.Text = ""  
                 end)
             end
+            
             function itemHandling:Slider(sliderInf, maxvalue, minvalue, callback)
                 local sliderfunc = {}
             
