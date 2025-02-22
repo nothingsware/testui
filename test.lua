@@ -857,57 +857,57 @@ function Fun.Create(title)
             function itemHandling:Label(txtLabel)
                 txtLabel = txtLabel or "nightmare.fun"
                 local TextLabel = Instance.new("TextLabel")
-
+            
                 TextLabel.Parent = sectionFrame
-                TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                TextLabel.BackgroundColor3 = Color3.fromRGB(58, 43, 52) -- Dark blush background
                 TextLabel.BackgroundTransparency = 1.000
                 TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
                 TextLabel.Size = UDim2.new(0, 260, 0, 27)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = txtLabel
-                TextLabel.TextColor3 = Color3.fromRGB(198, 198, 198)
+                TextLabel.TextColor3 = Color3.fromRGB(255, 200, 200) -- Light blush text
                 TextLabel.TextSize = 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             end
-
+            
             function itemHandling:KeyBind(bindInfo, first, callback)
                 bindInfo = bindInfo or "Press the Key"
                 local oldKey = first.Name
                 callback = callback or function() end
-
+            
                 local keybindFrame = Instance.new("Frame")
                 local UIListLayout = Instance.new("UIListLayout")
                 local keybindBtn = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
                 local TextLabel = Instance.new("TextLabel")
-
+            
                 keybindFrame.Name = "keybindFrame"
                 keybindFrame.Parent = sectionFrame
-                keybindFrame.BackgroundColor3 = Color3.fromRGB(43, 43, 52)
+                keybindFrame.BackgroundColor3 = Color3.fromRGB(58, 43, 52) -- Dark blush background
                 keybindFrame.BackgroundTransparency = 1.000
                 keybindFrame.Position = UDim2.new(0.0354609936, 0, 0.344827592, 0)
                 keybindFrame.Size = UDim2.new(0, 262, 0, 33)
-
+            
                 UIListLayout.Parent = keybindFrame
                 UIListLayout.FillDirection = Enum.FillDirection.Horizontal
                 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                 UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
                 UIListLayout.Padding = UDim.new(0, 3)
-
+            
                 keybindBtn.Name = "keybindBtn"
                 keybindBtn.Parent = keybindFrame
-                keybindBtn.BackgroundColor3 = Color3.fromRGB(43, 43, 52)
+                keybindBtn.BackgroundColor3 = Color3.fromRGB(70, 50, 60) -- Darker blush background
                 keybindBtn.Position = UDim2.new(0, 0, 0.106060609, 0)
                 keybindBtn.Size = UDim2.new(0, 107, 0, 26)
                 keybindBtn.AutoButtonColor = false
                 keybindBtn.Font = Enum.Font.GothamSemibold
                 keybindBtn.Text = oldKey
-                keybindBtn.TextColor3 = Color3.fromRGB(204, 204, 204)
+                keybindBtn.TextColor3 = Color3.fromRGB(255, 180, 180) -- Light blush text
                 keybindBtn.TextSize = 14.000
-
+            
                 UICorner.CornerRadius = UDim.new(0, 5)
                 UICorner.Parent = keybindBtn
-
+            
                 TextLabel.Parent = keybindFrame
                 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 TextLabel.BackgroundTransparency = 1.000
@@ -915,10 +915,10 @@ function Fun.Create(title)
                 TextLabel.Size = UDim2.new(0, 155, 0, 12)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = "KeyBind"
-                TextLabel.TextColor3 = Color3.fromRGB(127, 97, 145)
+                TextLabel.TextColor3 = Color3.fromRGB(255, 120, 120) -- Brighter blush text
                 TextLabel.TextSize = 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-
+            
                 keybindBtn.MouseButton1Click:connect(function(e) 
                     keybindBtn.Text = ". . ."
                     local a, b = game:GetService('UserInputService').InputBegan:wait();
@@ -927,7 +927,7 @@ function Fun.Create(title)
                         oldKey = a.KeyCode.Name;
                     end
                 end)
-        
+            
                 game:GetService("UserInputService").InputBegan:connect(function(current, ok) 
                     if not ok then 
                         if current.KeyCode.Name == oldKey then 
@@ -936,15 +936,15 @@ function Fun.Create(title)
                     end
                 end)
             end
-
+            
             function itemHandling:Dropdown(dropInfo, list, callback)
                 dropInfo = dropInfo or 'Favorite Hub'
                 list = list or {}
                 callback = callback or function() end
-
+            
                 local DropYSize = 28
                 local dropped = false
-
+            
                 local dropdownFrame = Instance.new("Frame")
                 local dropdownFrameHeader = Instance.new("Frame")
                 local UICorner = Instance.new("UICorner")
@@ -953,22 +953,22 @@ function Fun.Create(title)
                 local dropcover = Instance.new("Frame")
                 local dropListing = Instance.new("UIListLayout")
                 local dropdownCorner = Instance.new("UICorner")
-
+            
                 dropdownFrame.Name = "dropdownFrame"
                 dropdownFrame.Parent = sectionFrame
-                dropdownFrame.BackgroundColor3 = Color3.fromRGB(48, 48, 58)
+                dropdownFrame.BackgroundColor3 = Color3.fromRGB(58, 43, 52) -- Dark blush background
                 dropdownFrame.ClipsDescendants = true
                 dropdownFrame.Position = UDim2.new(0.0354609936, 0, 0.495833337, 0)
                 dropdownFrame.Size = UDim2.new(0, 262, 0, 28)
-
+            
                 dropdownFrameHeader.Name = "dropdownFrameHeader"
                 dropdownFrameHeader.Parent = dropdownFrame
-                dropdownFrameHeader.BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                dropdownFrameHeader.BackgroundColor3 = Color3.fromRGB(255, 120, 120) -- Brighter blush header
                 dropdownFrameHeader.Size = UDim2.new(0, 262, 0, 28)
-
+            
                 UICorner.CornerRadius = UDim.new(0, 5)
                 UICorner.Parent = dropdownFrameHeader
-
+            
                 dropdowninfo.Name = "dropdowninfo"
                 dropdowninfo.Parent = dropdownFrameHeader
                 dropdowninfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -977,11 +977,11 @@ function Fun.Create(title)
                 dropdowninfo.Size = UDim2.new(0, 197, 0, 28)
                 dropdowninfo.Font = Enum.Font.Gotham
                 dropdowninfo.Text = dropInfo
-                dropdowninfo.TextColor3 = Color3.fromRGB(255, 255, 255)
+                dropdowninfo.TextColor3 = Color3.fromRGB(255, 200, 200) -- Light blush text
                 dropdowninfo.TextSize = 15.000
                 dropdowninfo.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
                 dropdowninfo.TextXAlignment = Enum.TextXAlignment.Left
-
+            
                 closeDropdown.Name = "closeDropdown"
                 closeDropdown.Parent = dropdownFrameHeader
                 closeDropdown.BackgroundTransparency = 1.000
@@ -1022,54 +1022,54 @@ function Fun.Create(title)
                         UpdateSize()
                     end
                 end)
-
+            
                 dropcover.Name = "dropcover"
                 dropcover.Parent = dropdownFrameHeader
-                dropcover.BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                dropcover.BackgroundColor3 = Color3.fromRGB(255, 120, 120) -- Brighter blush cover
                 dropcover.BackgroundTransparency = 1.000
                 dropcover.BorderSizePixel = 0
                 dropcover.Position = UDim2.new(0, 0, 0.850000024, 0)
                 dropcover.Size = UDim2.new(0, 262, 0, 5)
-
+            
                 dropListing.Name = "dropListing"
                 dropListing.Parent = dropdownFrame
                 dropListing.HorizontalAlignment = Enum.HorizontalAlignment.Center
                 dropListing.SortOrder = Enum.SortOrder.LayoutOrder
                 dropListing.Padding = UDim.new(0, 4)
-
+            
                 dropdownCorner.CornerRadius = UDim.new(0, 5)
                 dropdownCorner.Name = "dropdownCorner"
                 dropdownCorner.Parent = dropdownFrame
-
+            
                 for i,v in next, list do
                     local dropdownButton = Instance.new("Frame")
                     local UIListLayout = Instance.new("UIListLayout")
                     local optionButton = Instance.new("TextButton")
                     local optionCorner = Instance.new("UICorner")
-
+            
                     dropdownButton.Name = "dropdownButton"
                     dropdownButton.Parent = dropdownFrame
                     dropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                     dropdownButton.BackgroundTransparency = 1.000
                     dropdownButton.Position = UDim2.new(0, 0, 0.284552842, 0)
                     dropdownButton.Size = UDim2.new(0, 251, 0, 28)
-
+            
                     UIListLayout.Parent = dropdownButton
                     UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
                     UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
                     UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-
+            
                     DropYSize = DropYSize + 33
                     optionButton.Name = "optionButton"
                     optionButton.Parent = dropdownButton
-                    optionButton.BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                    optionButton.BackgroundColor3 = Color3.fromRGB(255, 120, 120) -- Brighter blush button
                     optionButton.BorderSizePixel = 0
                     optionButton.Position = UDim2.new(0.0667938963, 0, -0.418119699, 0)
                     optionButton.Size = UDim2.new(0, 251, 0, 28)
                     optionButton.AutoButtonColor = false
                     optionButton.Font = Enum.Font.Gotham
                     optionButton.Text = "  "..v
-                    optionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    optionButton.TextColor3 = Color3.fromRGB(255, 200, 200) -- Light blush text
                     optionButton.TextSize = 14.000
                     optionButton.TextXAlignment = Enum.TextXAlignment.Left
                     optionButton.MouseButton1Click:Connect(function()
@@ -1089,7 +1089,7 @@ function Fun.Create(title)
                         wait(0.1)
                         UpdateSize()
                     end)
-
+            
                     optionButton.MouseButton1Down:Connect(function()
                         game.TweenService:Create(optionButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
                             Size = UDim2.new(0, 235,0, 26)
@@ -1100,7 +1100,7 @@ function Fun.Create(title)
                             Size = UDim2.new(0, 251,0, 28)
                         }):Play()
                     end)
-
+            
                     optionCorner.CornerRadius = UDim.new(0, 5)
                     optionCorner.Name = "optionCorner"
                     optionCorner.Parent = optionButton
