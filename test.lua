@@ -858,13 +858,13 @@ function Fun.Create(title)
                 local TextLabel = Instance.new("TextLabel")
             
                 TextLabel.Parent = sectionFrame
-                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) -- Dark blue background
+                TextLabel.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker blue background
                 TextLabel.BackgroundTransparency = 1.000
                 TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
                 TextLabel.Size = UDim2.new(0, 260, 0, 27)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = txtLabel
-                TextLabel.TextColor3 = Color3.fromRGB(200, 220, 255) -- Light blue text
+                TextLabel.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light blue text
                 TextLabel.TextSize = 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             end
@@ -882,7 +882,7 @@ function Fun.Create(title)
             
                 keybindFrame.Name = "keybindFrame"
                 keybindFrame.Parent = sectionFrame
-                keybindFrame.BackgroundColor3 = Color3.fromRGB(30, 40, 60) -- Dark blue background
+                keybindFrame.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker blue background
                 keybindFrame.BackgroundTransparency = 1.000
                 keybindFrame.Position = UDim2.new(0.0354609936, 0, 0.344827592, 0)
                 keybindFrame.Size = UDim2.new(0, 262, 0, 33)
@@ -895,13 +895,13 @@ function Fun.Create(title)
             
                 keybindBtn.Name = "keybindBtn"
                 keybindBtn.Parent = keybindFrame
-                keybindBtn.BackgroundColor3 = Color3.fromRGB(40, 50, 70) -- Darker blue background
+                keybindBtn.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker blue background
                 keybindBtn.Position = UDim2.new(0, 0, 0.106060609, 0)
                 keybindBtn.Size = UDim2.new(0, 107, 0, 26)
                 keybindBtn.AutoButtonColor = false
                 keybindBtn.Font = Enum.Font.GothamSemibold
                 keybindBtn.Text = oldKey
-                keybindBtn.TextColor3 = Color3.fromRGB(200, 220, 255) -- Light blue text
+                keybindBtn.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light blue text
                 keybindBtn.TextSize = 14.000
             
                 UICorner.CornerRadius = UDim.new(0, 5)
@@ -914,7 +914,7 @@ function Fun.Create(title)
                 TextLabel.Size = UDim2.new(0, 155, 0, 12)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = "KeyBind"
-                TextLabel.TextColor3 = Color3.fromRGB(100, 150, 255) -- Brighter blue text
+                TextLabel.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light blue text
                 TextLabel.TextSize = 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -955,14 +955,14 @@ function Fun.Create(title)
             
                 dropdownFrame.Name = "dropdownFrame"
                 dropdownFrame.Parent = sectionFrame
-                dropdownFrame.BackgroundColor3 = Color3.fromRGB(30, 40, 60) -- Dark blue background
+                dropdownFrame.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker blue background
                 dropdownFrame.ClipsDescendants = true
                 dropdownFrame.Position = UDim2.new(0.0354609936, 0, 0.495833337, 0)
                 dropdownFrame.Size = UDim2.new(0, 262, 0, 28)
             
                 dropdownFrameHeader.Name = "dropdownFrameHeader"
                 dropdownFrameHeader.Parent = dropdownFrame
-                dropdownFrameHeader.BackgroundColor3 = Color3.fromRGB(100, 150, 255) -- Brighter blue header
+                dropdownFrameHeader.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light blue header
                 dropdownFrameHeader.Size = UDim2.new(0, 262, 0, 28)
             
                 UICorner.CornerRadius = UDim.new(0, 5)
@@ -976,7 +976,7 @@ function Fun.Create(title)
                 dropdowninfo.Size = UDim2.new(0, 197, 0, 28)
                 dropdowninfo.Font = Enum.Font.Gotham
                 dropdowninfo.Text = dropInfo
-                dropdowninfo.TextColor3 = Color3.fromRGB(200, 220, 255) -- Light blue text
+                dropdowninfo.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light blue text
                 dropdowninfo.TextSize = 15.000
                 dropdowninfo.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
                 dropdowninfo.TextXAlignment = Enum.TextXAlignment.Left
@@ -1024,7 +1024,7 @@ function Fun.Create(title)
             
                 dropcover.Name = "dropcover"
                 dropcover.Parent = dropdownFrameHeader
-                dropcover.BackgroundColor3 = Color3.fromRGB(100, 150, 255) -- Brighter blue cover
+                dropcover.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light blue cover
                 dropcover.BackgroundTransparency = 1.000
                 dropcover.BorderSizePixel = 0
                 dropcover.Position = UDim2.new(0, 0, 0.850000024, 0)
@@ -1061,14 +1061,14 @@ function Fun.Create(title)
                     DropYSize = DropYSize + 33
                     optionButton.Name = "optionButton"
                     optionButton.Parent = dropdownButton
-                    optionButton.BackgroundColor3 = Color3.fromRGB(100, 150, 255) -- Brighter blue button
+                    optionButton.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light blue button
                     optionButton.BorderSizePixel = 0
                     optionButton.Position = UDim2.new(0.0667938963, 0, -0.418119699, 0)
                     optionButton.Size = UDim2.new(0, 251, 0, 28)
                     optionButton.AutoButtonColor = false
                     optionButton.Font = Enum.Font.Gotham
                     optionButton.Text = "  "..v
-                    optionButton.TextColor3 = Color3.fromRGB(200, 220, 255) -- Light blue text
+                    optionButton.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light blue text
                     optionButton.TextSize = 14.000
                     optionButton.TextXAlignment = Enum.TextXAlignment.Left
                     optionButton.MouseButton1Click:Connect(function()
