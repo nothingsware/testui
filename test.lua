@@ -851,9 +851,10 @@ function Fun.Create(title)
                 return sliderfunc
             end
             
-            function itemHandling:Label(txtLabel)
+            function itemHandling:Label(txtLabel, options)
                 txtLabel = txtLabel or "Label"
-
+                options = options or {}
+            
                 local TextLabel = Instance.new("TextLabel")
                 TextLabel.Parent = sectionFrame
                 TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) 
@@ -862,14 +863,11 @@ function Fun.Create(title)
                 TextLabel.Size = UDim2.new(0, 260, 0, 27)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = txtLabel
-                TextLabel.TextColor3 = TextColor3 or Color3.fromRGB(200, 220, 255) 
-                TextLabel.TextSize = TextSize or 14.000
+                TextLabel.TextColor3 = options.TextColor3 or Color3.fromRGB(200, 220, 255) 
+                TextLabel.TextSize = options.TextSize or 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             
-                function TextLabel:SetText(newText)
-                    self.Text = newText
-                end
-            
+
                 return TextLabel
             end
             
