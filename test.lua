@@ -46,6 +46,7 @@ function Fun:DraggingEnabled(frame, parent)
 end
 
 function Fun.Create(title)
+     title = title or "Automation"
     local nightmarefun = Instance.new("ScreenGui")
     local Shadow = Instance.new("ImageLabel")
     local mainFrame = Instance.new("Frame")
@@ -168,6 +169,7 @@ function Fun.Create(title)
     pages.Parent = allPages
 
     local function truncateText(text, maxLength)
+        if not text then return "" end
         if text:len() > maxLength then
             return text:sub(1, maxLength) .. "..."
         end
