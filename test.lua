@@ -5,27 +5,23 @@ local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
 
--- Add Blur Effect
 local blur = Instance.new("BlurEffect")
 blur.Size = 24
 blur.Parent = game:GetService("Lighting")
 
--- Add Glow Effect
 local glow = Instance.new("BloomEffect")
 glow.Intensity = 0.5
 glow.Size = 24
 glow.Threshold = 0.9
 glow.Parent = game:GetService("Lighting")
 
--- Function to remove blur after 5 seconds
 local function removeBlur()
-    wait(5) -- Wait for 5 seconds
+    wait(3)
     if blur then
-        blur:Destroy() -- Remove the blur effect
+        blur:Destroy()
     end
 end
 
--- Call the removeBlur function
 removeBlur()
 
 function Fun:DraggingEnabled(frame, parent)
@@ -103,19 +99,18 @@ function Fun.Create(title)
 
     mainFrame.Name = "mainFrame"
     mainFrame.Parent = Shadow
-    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 40, 50) -- Light bluish dark color
+    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 40, 50) 
     mainFrame.Position = UDim2.new(0.0500000007, 0, 0.0780000016, 0)
     mainFrame.Size = UDim2.new(0, 475, 0, 396)
 
-    -- Add Glow to Main Frame
     local frameGlow = Instance.new("ImageLabel")
     frameGlow.Name = "FrameGlow"
     frameGlow.Parent = mainFrame
     frameGlow.BackgroundTransparency = 1
-    frameGlow.Position = UDim2.new(-0.05, 0, -0.05, 0) -- Adjusted position to align with the frame
-    frameGlow.Size = UDim2.new(1.1, 0, 1.1, 0) -- Slightly larger to cover the frame
+    frameGlow.Position = UDim2.new(-0.05, 0, -0.05, 0) 
+    frameGlow.Size = UDim2.new(1.1, 0, 1.1, 0) 
     frameGlow.Image = "rbxassetid://5028857084"
-    frameGlow.ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish glow
+    frameGlow.ImageColor3 = Color3.fromRGB(100, 150, 200) 
     frameGlow.ScaleType = Enum.ScaleType.Slice
     frameGlow.SliceCenter = Rect.new(24, 24, 276, 276)
     frameGlow.ZIndex = -1
@@ -126,7 +121,7 @@ function Fun.Create(title)
 
     mainSide.Name = "mainSide"
     mainSide.Parent = mainFrame
-    mainSide.BackgroundColor3 = Color3.fromRGB(25, 35, 45) -- Darker bluish color
+    mainSide.BackgroundColor3 = Color3.fromRGB(25, 35, 45) 
     mainSide.Size = UDim2.new(0, 166, 0, 396)
 
     UICorner.CornerRadius = UDim.new(0, 6)
@@ -143,15 +138,15 @@ function Fun.Create(title)
     nightmares.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     nightmares.BackgroundTransparency = 1.000
     nightmares.Position = UDim2.new(0.0499999262, 0, 0.0228203665, 0)
-    nightmares.Size = UDim2.new(0, 149, 0, 28) -- Adjusted width to fit longer titles
+    nightmares.Size = UDim2.new(0, 149, 0, 28) 
     nightmares.TextXAlignment = Enum.TextXAlignment.Left
     nightmares.Font = Enum.Font.Gotham
     nightmares.Text = " "..title
-    nightmares.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
+    nightmares.TextColor3 = Color3.fromRGB(100, 150, 200) 
     nightmares.TextSize = 20.000
-    nightmares.TextWrapped = true -- Ensures text wraps to the next line
-    nightmares.TextScaled = true -- Automatically scales text to fit
-    nightmares.TextTruncate = Enum.TextTruncate.AtEnd -- Adds "..." if text is too long
+    nightmares.TextWrapped = true 
+    nightmares.TextScaled = true 
+    nightmares.TextTruncate = Enum.TextTruncate.AtEnd 
 
     fun.Name = "fun"
     fun.Parent = mainSide
@@ -168,7 +163,7 @@ function Fun.Create(title)
 
     cover.Name = "cover"
     cover.Parent = mainSide
-    cover.BackgroundColor3 = Color3.fromRGB(25, 35, 45) -- Darker bluish color
+    cover.BackgroundColor3 = Color3.fromRGB(25, 35, 45) 
     cover.BorderSizePixel = 0
     cover.Position = UDim2.new(0.949999988, 0, 0, 0)
     cover.Size = UDim2.new(0, 9, 0, 396)
@@ -201,7 +196,7 @@ function Fun.Create(title)
         return text
     end
     
-    nightmares.Text = " " .. truncateText(title, 20) -- Truncate to 20 characters
+    nightmares.Text = " " .. truncateText(title, 20) 
 
     local tabHandling = {}
 
@@ -216,7 +211,7 @@ function Fun.Create(title)
         tabButton.Size = UDim2.new(0, 149, 0, 35)
         tabButton.Font = Enum.Font.Gotham
         tabButton.Text = tabText
-        tabButton.TextColor3 = Color3.fromRGB(150, 150, 150) -- Light gray text
+        tabButton.TextColor3 = Color3.fromRGB(150, 150, 150) 
         tabButton.TextSize = 16.000
 
         local newPage = Instance.new("ScrollingFrame")
@@ -228,7 +223,7 @@ function Fun.Create(title)
         newPage.BorderSizePixel = 0
         newPage.Size = UDim2.new(1, 0, 1, 0)
         newPage.ScrollBarThickness = 6
-        newPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish scrollbar
+        newPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 200) 
         newPage.Visible = false
 
         local sectionListing = Instance.new("UIListLayout")    
@@ -1038,7 +1033,7 @@ function Fun.Create(title)
             
                 dropcover.Name = "dropcover"
                 dropcover.Parent = dropdownFrameHeader
-                dropcover.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light blue cover
+                dropcover.BackgroundColor3 = Color3.fromRGB(100, 150, 200) 
                 dropcover.BackgroundTransparency = 1.000
                 dropcover.BorderSizePixel = 0
                 dropcover.Position = UDim2.new(0, 0, 0.850000024, 0)
@@ -1075,14 +1070,14 @@ function Fun.Create(title)
                     DropYSize = DropYSize + 33
                     optionButton.Name = "optionButton"
                     optionButton.Parent = dropdownButton
-                    optionButton.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light blue button
+                    optionButton.BackgroundColor3 = Color3.fromRGB(100, 150, 200) 
                     optionButton.BorderSizePixel = 0
                     optionButton.Position = UDim2.new(0.0667938963, 0, -0.418119699, 0)
                     optionButton.Size = UDim2.new(0, 251, 0, 28)
                     optionButton.AutoButtonColor = false
                     optionButton.Font = Enum.Font.Gotham
                     optionButton.Text = "  "..v
-                    optionButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text for contrast
+                    optionButton.TextColor3 = Color3.fromRGB(255, 255, 255) 
                     optionButton.TextSize = 14.000
                     optionButton.TextXAlignment = Enum.TextXAlignment.Left
                     optionButton.MouseButton1Click:Connect(function()
