@@ -119,15 +119,15 @@ function Fun.Create(title)
     automations.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     automations.BackgroundTransparency = 1.000
     automations.Position = UDim2.new(0.0499999262, 0, 0.0228203665, 0)
-    automations.Size = UDim2.new(0, 149, 0, 28) 
+    automations.Size = UDim2.new(0, 149, 0, 28)
     automations.TextXAlignment = Enum.TextXAlignment.Left
     automations.Font = Enum.Font.Gotham
     automations.Text = " "..title
-    automations.TextColor3 = Color3.fromRGB(100, 150, 200) 
+    automations.TextColor3 = Color3.fromRGB(100, 150, 200)
     automations.TextSize = 20.000
-    automations.TextWrapped = true 
-    automations.TextScaled = true 
-    automations.TextTruncate = Enum.TextTruncate.AtEnd 
+    automations.TextWrapped = true
+    automations.TextScaled = true
+    automations.TextTruncate = Enum.TextTruncate.AtEnd
 
     fun.Name = "fun"
     fun.Parent = mainSide
@@ -178,7 +178,11 @@ function Fun.Create(title)
         return text
     end
     
-    automations.Text = " " .. truncateText(title, 20) 
+    if automations:IsA("TextLabel") then
+        automations.Text = " " .. truncateText(title, 20)
+    else
+        warn("automations is not a TextLabel")
+    end
 
     local tabHandling = {}
 
@@ -851,15 +855,16 @@ function Fun.Create(title)
                 txtLabel = txtLabel or "Label"
                 options = options or {}
             
+                -- Create the TextLabel
                 local TextLabel = Instance.new("TextLabel")
                 TextLabel.Parent = sectionFrame
-                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) 
+                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) -- Dark blue background
                 TextLabel.BackgroundTransparency = 1.000
                 TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
                 TextLabel.Size = UDim2.new(0, 260, 0, 27)
                 TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = txtLabel
-                TextLabel.TextColor3 = options.TextColor3 or Color3.fromRGB(200, 220, 255) 
+                TextLabel.TextColor3 = options.TextColor3 or Color3.fromRGB(200, 220, 255) -- Default to bright blue text
                 TextLabel.TextSize = options.TextSize or 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             
