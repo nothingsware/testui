@@ -1,4 +1,4 @@
- local Fun = {}
+local Fun = {}
 
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
@@ -691,7 +691,7 @@ function Fun.Create(title)
             
                 SliderDrag.Name = "SliderDrag"
                 SliderDrag.Parent = sliderBtn
-                SliderDrag.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Light bluish color
+                SliderDrag.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
                 SliderDrag.BorderColor3 = Color3.fromRGB(255, 255, 255) -- Light bluish color
                 SliderDrag.BorderSizePixel = 0
                 SliderDrag.Size = UDim2.new(0, 0, 0, 9)
