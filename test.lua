@@ -49,13 +49,13 @@ end
 
 function Fun.Create(title)
      title = title or "Automation"
-    local nightmarefun = Instance.new("ScreenGui")
+    local Automation = Instance.new("ScreenGui")
     local Shadow = Instance.new("ImageLabel")
     local mainFrame = Instance.new("Frame")
     local mainCorner = Instance.new("UICorner")
     local mainSide = Instance.new("Frame")
     local UICorner = Instance.new("UICorner")
-    local nightmares = Instance.new("TextLabel")
+    local automations = Instance.new("TextLabel")
     local fun = Instance.new("TextLabel")
     local cover = Instance.new("Frame")
     local allTabs = Instance.new("Frame")
@@ -64,13 +64,13 @@ function Fun.Create(title)
     local pages = Instance.new("Folder")
 
     Fun:DraggingEnabled(mainFrame, Shadow)
-    nightmarefun.Name = "nightmarefun"
-    nightmarefun.Parent = game.CoreGui
-    nightmarefun.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    nightmarefun.ResetOnSpawn = false
+    Automation.Name = "Automation"
+    Automation.Parent = game.CoreGui
+    Automation.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Automation.ResetOnSpawn = false
 
     Shadow.Name = "Shadow"
-    Shadow.Parent = nightmarefun
+    Shadow.Parent = Automation
     Shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Shadow.BackgroundTransparency = 1.000
     Shadow.Position = UDim2.new(0.349795759, 0, 0.171759665, 0)
@@ -110,24 +110,24 @@ function Fun.Create(title)
 
     game:GetService("UserInputService").InputBegan:connect(function(current) 
         if current.KeyCode.Name == Enum.KeyCode.LeftAlt.Name then 
-            nightmarefun.Enabled = not nightmarefun.Enabled
+            Automation.Enabled = not Automation.Enabled
         end
     end)
 
-    nightmares.Name = "nightmares"
-    nightmares.Parent = mainSide
-    nightmares.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    nightmares.BackgroundTransparency = 1.000
-    nightmares.Position = UDim2.new(0.0499999262, 0, 0.0228203665, 0)
-    nightmares.Size = UDim2.new(0, 149, 0, 28) 
-    nightmares.TextXAlignment = Enum.TextXAlignment.Left
-    nightmares.Font = Enum.Font.Gotham
-    nightmares.Text = " "..title
-    nightmares.TextColor3 = Color3.fromRGB(100, 150, 200) 
-    nightmares.TextSize = 20.000
-    nightmares.TextWrapped = true 
-    nightmares.TextScaled = true 
-    nightmares.TextTruncate = Enum.TextTruncate.AtEnd 
+    automations.Name = "automations"
+    automations.Parent = mainSide
+    automations.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    automations.BackgroundTransparency = 1.000
+    automations.Position = UDim2.new(0.0499999262, 0, 0.0228203665, 0)
+    automations.Size = UDim2.new(0, 149, 0, 28) 
+    automations.TextXAlignment = Enum.TextXAlignment.Left
+    automations.Font = Enum.Font.Gotham
+    automations.Text = " "..title
+    automations.TextColor3 = Color3.fromRGB(100, 150, 200) 
+    automations.TextSize = 20.000
+    automations.TextWrapped = true 
+    automations.TextScaled = true 
+    automations.TextTruncate = Enum.TextTruncate.AtEnd 
 
     fun.Name = "fun"
     fun.Parent = mainSide
@@ -178,7 +178,7 @@ function Fun.Create(title)
         return text
     end
     
-    nightmares.Text = " " .. truncateText(title, 20) 
+    automations.Text = " " .. truncateText(title, 20) 
 
     local tabHandling = {}
 
