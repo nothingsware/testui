@@ -866,8 +866,6 @@ function Fun.Create(title)
                 TextLabel.TextColor3 = options.TextColor3 or Color3.fromRGB(200, 220, 255) 
                 TextLabel.TextSize = options.TextSize or 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-            
-
                 return TextLabel
             end
             
