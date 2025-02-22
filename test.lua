@@ -25,56 +25,8 @@ local function removeBlur()
     end
 end
 
-local loadingScreen = Instance.new("ScreenGui")
-loadingScreen.Name = "LoadingScreen"
-loadingScreen.Parent = game.CoreGui
-loadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-local loadingFrame = Instance.new("Frame")
-loadingFrame.Name = "LoadingFrame"
-loadingFrame.Parent = loadingScreen
-loadingFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-loadingFrame.BackgroundTransparency = 0.5
-loadingFrame.Size = UDim2.new(1, 0, 1, 0)
-
-local loadingText = Instance.new("TextLabel")
-loadingText.Name = "LoadingText"
-loadingText.Parent = loadingFrame
-loadingText.BackgroundTransparency = 1
-loadingText.Position = UDim2.new(0.5, 0, 0.5, 0)
-loadingText.AnchorPoint = Vector2.new(0.5, 0.5)
-loadingText.Size = UDim2.new(0, 200, 0, 50)
-loadingText.Font = Enum.Font.Gotham
-loadingText.Text = "" -- Start with an empty string
-loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
-loadingText.TextSize = 24
-loadingText.TextWrapped = true
-
-local function animateLoadingText()
-    local text = "AUTOMATION..." -- The full text to display
-    local delayBetweenLetters = 0.1 -- Delay between each letter (in seconds)
-    loadingText.Text = "" -- Start with an empty string
-
-    for i = 1, #text do
-        loadingText.Text = string.sub(text, 1, i) -- Add one letter at a time
-        wait(delayBetweenLetters) -- Wait before adding the next letter
-    end
-end
-
--- Start the loading text animation
-coroutine.wrap(animateLoadingText)()
-
--- Function to remove loading screen and load the main UI
-local function loadMainUI()
-    wait(5) -- Wait for 5 seconds (loading time)
-    loadingScreen:Destroy() -- Remove the loading screen
-    wait(1) -- Small delay before creating the main UI
-    Fun.Create("Main UI Title") -- Load the main UI
-end
-
--- Call the removeBlur and loadMainUI functions
+-- Call the removeBlur function
 removeBlur()
-loadMainUI()  -- Ensure this is called with the correct capitalization
 
 function Fun:DraggingEnabled(frame, parent)
     parent = parent or frame
