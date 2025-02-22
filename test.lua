@@ -703,20 +703,23 @@ function Fun.Create(title)
                 sliderBox.TextXAlignment = Enum.TextXAlignment.Right
                 sliderBox.TextEditable = true
             
-                local mouse = game.Players.LocalPlayer:GetMouse()
+                local Players = game:GetService("Players")
+                local LocalPlayer = Players.LocalPlayer
+                
+                local mouse = LocalPlayer:GetMouse()
                 local uis = game:GetService("UserInputService")
                 local Value
-            
+                
                 local moveConnection
                 local releaseConnection
-            
+                
                 sliderBtn.MouseButton1Down:Connect(function()
                     Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue)) or 0
                     pcall(function()
                         callback(Value)
                     end)
                     SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
-            
+                
                     moveConnection = mouse.Move:Connect(function()
                         sliderBox.Text = Value
                         Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue))
@@ -725,7 +728,7 @@ function Fun.Create(title)
                         end)
                         SliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 262), 0, 9), "InOut", "Linear", 0.05, true)
                     end)
-            
+                
                     releaseConnection = uis.InputEnded:Connect(function(Mouse)
                         if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
                             Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 262) * SliderDrag.AbsoluteSize.X) + tonumber(minvalue))
