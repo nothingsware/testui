@@ -1,5 +1,14 @@
 local Fun = {}
 
+local Players = game:FindService("Players")
+
+if not Players then
+    warn("Players service is not available in this context.")
+    return
+end
+
+local player = Players.LocalPlayer
+
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
 local tween = game:GetService("TweenService")
@@ -700,9 +709,6 @@ function Fun.Create(title)
                 sliderBox.TextWrapped = true
                 sliderBox.TextXAlignment = Enum.TextXAlignment.Right
                 sliderBox.TextEditable = true
-            
-                local Players = game:GetService("Players")
-                local LocalPlayer = Players.LocalPlayer
                 
                 local mouse = LocalPlayer:GetMouse()
                 local uis = game:GetService("UserInputService")
@@ -847,20 +853,18 @@ function Fun.Create(title)
                 return sliderfunc
             end
             
-            function itemHandling:Label(txtLabel)
+            function itemHandling:Label(txtLabel, options)
                 txtLabel = txtLabel or "Label"
-                local TextLabel = Instance.new("TextLabel")
+                options = options or {}
             
+                local TextLabel = Instance.new("TextLabel")
                 TextLabel.Parent = sectionFrame
-                TextLabel.BackgroundColor3 = Color3.fromRGB(30, 40, 60) 
-                TextLabel.BackgroundTransparency = 1.000
-                TextLabel.Position = UDim2.new(0.0390070938, 0, 0.826923072, 0)
-                TextLabel.Size = UDim2.new(0, 260, 0, 27)
-                TextLabel.Font = Enum.Font.Gotham
                 TextLabel.Text = txtLabel
-                TextLabel.TextColor3 = Color3.fromRGB(200, 220, 255)
-                TextLabel.TextSize = 14.000
+                TextLabel.TextColor3 = options.TextColor3 or Color3.fromRGB(200, 220, 255)
+                TextLabel.TextSize = options.TextSize or 14.000
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+            
+                return TextLabel
             end
             
             function itemHandling:KeyBind(bindInfo, first, callback)
