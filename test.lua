@@ -1,4 +1,4 @@
- local Fun = {}
+local Fun = {}
 
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
