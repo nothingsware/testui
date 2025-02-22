@@ -451,8 +451,8 @@ function Fun.Create(title)
                 end)
             end
 
-            function itemHandling:Toggle(togInfo, callback)
-                local tog = false
+            function itemHandling:Toggle(togInfo, callback, initialState)
+                local tog = initialState or false 
                 togInfo = togInfo or "Toggle"
                 callback = callback or function() end
             
@@ -476,9 +476,10 @@ function Fun.Create(title)
                 checkBox.Size = UDim2.new(0, 25, 0, 25)
                 checkBox.ZIndex = 2
                 checkBox.Image = "rbxassetid://3926311105"
-                checkBox.ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
-                checkBox.ImageRectOffset = Vector2.new(940, 784)
+                checkBox.ImageColor3 = tog and Color3.fromRGB(100, 150, 200) or Color3.fromRGB(150, 150, 150) -- Set initial color based on state
+                checkBox.ImageRectOffset = tog and Vector2.new(4, 836) or Vector2.new(940, 784) -- Set initial offset based on state            
                 checkBox.ImageRectSize = Vector2.new(48, 48)
+                
             
                 UIListLayout.Parent = toggleFrame
                 UIListLayout.FillDirection = Enum.FillDirection.Horizontal
@@ -494,7 +495,7 @@ function Fun.Create(title)
                 checkBoxInfo.Size = UDim2.new(0, 200, 0, 19)
                 checkBoxInfo.Font = Enum.Font.Gotham
                 checkBoxInfo.Text = togInfo
-                checkBoxInfo.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
+                checkBoxInfo.TextColor3 = tog and Color3.fromRGB(100, 150, 200) or Color3.fromRGB(150, 150, 150) 
                 checkBoxInfo.TextSize = 14.000
                 checkBoxInfo.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -541,33 +542,28 @@ function Fun.Create(title)
                 end)
             
                 checkBox.MouseButton1Click:Connect(function()
-                    if not clickDe then
-                        clickDe = true
-                        tog = not tog
-                        callback(tog)
-                        if tog then
-                            game.TweenService:Create(checkBox.Parent.checkBoxInfo, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
-                            }):Play()
-                            checkBox.ImageRectOffset = Vector2.new(4, 836)
-                            game.TweenService:Create(checkBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
-                            }):Play()
-                        else
-                            game.TweenService:Create(checkBox.Parent.checkBoxInfo, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
-                            }):Play()
-                            checkBox.ImageRectOffset = Vector2.new(940, 784)
-                            game.TweenService:Create(checkBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish color
-                            }):Play()
-                        end
-                        wait(0.8)
-                        clickDe = false
+                    tog = not tog
+                    callback(tog)
+                    if tog then
+                        game.TweenService:Create(checkBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+                            ImageColor3 = Color3.fromRGB(100, 150, 200),
+                            ImageRectOffset = Vector2.new(4, 836)
+                        }):Play()
+                        game.TweenService:Create(checkBoxInfo, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+                            TextColor3 = Color3.fromRGB(100, 150, 200)
+                        }):Play()
+                    else
+                        game.TweenService:Create(checkBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+                            ImageColor3 = Color3.fromRGB(150, 150, 150),
+                            ImageRectOffset = Vector2.new(940, 784)
+                        }):Play()
+                        game.TweenService:Create(checkBoxInfo, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+                            TextColor3 = Color3.fromRGB(150, 150, 150)
+                        }):Play()
                     end
                 end)
             end
-
+            
             function itemHandling:TextBox(textInfo, callback)
                 textInfo = textInfo or "Type here"
                 callback = callback or function() end
