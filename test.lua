@@ -1,4 +1,4 @@
-local Fun = {}
+ local Fun = {}
 
 local input = game:GetService("UserInputService")
 local run = game:GetService("RunService")
@@ -103,7 +103,7 @@ function Fun.Create(title)
 
     mainFrame.Name = "mainFrame"
     mainFrame.Parent = Shadow
-    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(30, 40, 50) -- Light bluish dark color
     mainFrame.Position = UDim2.new(0.0500000007, 0, 0.0780000016, 0)
     mainFrame.Size = UDim2.new(0, 475, 0, 396)
 
@@ -115,7 +115,7 @@ function Fun.Create(title)
     frameGlow.Position = UDim2.new(-0.05, 0, -0.05, 0) -- Adjusted position to align with the frame
     frameGlow.Size = UDim2.new(1.1, 0, 1.1, 0) -- Slightly larger to cover the frame
     frameGlow.Image = "rbxassetid://5028857084"
-    frameGlow.ImageColor3 = Color3.fromRGB(127, 97, 145)
+    frameGlow.ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish glow
     frameGlow.ScaleType = Enum.ScaleType.Slice
     frameGlow.SliceCenter = Rect.new(24, 24, 276, 276)
     frameGlow.ZIndex = -1
@@ -126,7 +126,7 @@ function Fun.Create(title)
 
     mainSide.Name = "mainSide"
     mainSide.Parent = mainFrame
-    mainSide.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+    mainSide.BackgroundColor3 = Color3.fromRGB(25, 35, 45) -- Darker bluish color
     mainSide.Size = UDim2.new(0, 166, 0, 396)
 
     UICorner.CornerRadius = UDim.new(0, 6)
@@ -147,7 +147,7 @@ function Fun.Create(title)
     nightmares.TextXAlignment = Enum.TextXAlignment.Left
     nightmares.Font = Enum.Font.Gotham
     nightmares.Text = " "..title
-    nightmares.TextColor3 = Color3.fromRGB(127, 97, 145)
+    nightmares.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
     nightmares.TextSize = 20.000
     nightmares.TextWrapped = true
 
@@ -166,7 +166,7 @@ function Fun.Create(title)
 
     cover.Name = "cover"
     cover.Parent = mainSide
-    cover.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+    cover.BackgroundColor3 = Color3.fromRGB(25, 35, 45) -- Darker bluish color
     cover.BorderSizePixel = 0
     cover.Position = UDim2.new(0.949999988, 0, 0, 0)
     cover.Size = UDim2.new(0, 9, 0, 396)
@@ -205,7 +205,7 @@ function Fun.Create(title)
         tabButton.Size = UDim2.new(0, 149, 0, 35)
         tabButton.Font = Enum.Font.Gotham
         tabButton.Text = tabText
-        tabButton.TextColor3 = Color3.fromRGB(87, 87, 104)
+        tabButton.TextColor3 = Color3.fromRGB(150, 150, 150) -- Light gray text
         tabButton.TextSize = 16.000
 
         local newPage = Instance.new("ScrollingFrame")
@@ -217,7 +217,7 @@ function Fun.Create(title)
         newPage.BorderSizePixel = 0
         newPage.Size = UDim2.new(1, 0, 1, 0)
         newPage.ScrollBarThickness = 6
-        newPage.ScrollBarImageColor3 = Color3.fromRGB(127, 97, 145)
+        newPage.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish scrollbar
         newPage.Visible = false
 
         local sectionListing = Instance.new("UIListLayout")    
@@ -240,12 +240,12 @@ function Fun.Create(title)
             for i,v in next, allTabs:GetChildren() do
                 if v:IsA("TextButton") then
                     game.TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                        TextColor3 = Color3.fromRGB(87, 87, 104)
+                        TextColor3 = Color3.fromRGB(150, 150, 150) -- Light gray text
                     }):Play()
                 end
             end
             game.TweenService:Create(tabButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                TextColor3 = Color3.fromRGB(127, 97, 145)
+                TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
             }):Play()
 
             for i,v in next, pages:GetChildren() do
@@ -271,7 +271,7 @@ function Fun.Create(title)
 
             sectionFrame.Name = "sectionFrame"
             sectionFrame.Parent = newPage
-            sectionFrame.BackgroundColor3 = Color3.fromRGB(37, 37, 44)
+            sectionFrame.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker bluish color
             sectionFrame.Position = UDim2.new(0, 0, -8.009863e-08, 0)
             sectionFrame.Size = UDim2.new(0.9559322, 0, 0, 36)
             sectionFrame.ClipsDescendants = true
@@ -285,7 +285,7 @@ function Fun.Create(title)
 
             sectionFrameHead.Name = "sectionFrameHead"
             sectionFrameHead.Parent = sectionFrame
-            sectionFrameHead.BackgroundColor3 = Color3.fromRGB(37, 37, 44)
+            sectionFrameHead.BackgroundColor3 = Color3.fromRGB(40, 50, 60) -- Darker bluish color
             sectionFrameHead.Position = UDim2.new(0, 0, -8.009863e-08, 0)
             sectionFrameHead.Size = UDim2.new(1, 0, 0, 36)
 
@@ -293,7 +293,7 @@ function Fun.Create(title)
 
             sectionCircle.Name = "sectionCircle"
             sectionCircle.Parent = sectionFrameHead
-            sectionCircle.BackgroundColor3 = Color3.fromRGB(82, 82, 98)
+            sectionCircle.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish circle
             sectionCircle.Position = UDim2.new(0.0354609936, 0, 0.388888896, 0)
             sectionCircle.Size = UDim2.new(0, 7, 0, 7)
 
@@ -307,7 +307,7 @@ function Fun.Create(title)
             TextLabel.Size = UDim2.new(0, 173, 0, 22)
             TextLabel.Font = Enum.Font.Gotham
             TextLabel.Text = sectionName
-            TextLabel.TextColor3 = Color3.fromRGB(82, 82, 98)
+            TextLabel.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
             TextLabel.TextSize = 14.000
             TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -318,7 +318,7 @@ function Fun.Create(title)
             closeSection.Size = UDim2.new(0, 25, 0, 25)
             closeSection.ZIndex = 2
             closeSection.Image = "rbxassetid://3926305904"
-            closeSection.ImageColor3 = Color3.fromRGB(82, 82, 98)
+            closeSection.ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish icon
             closeSection.ImageRectOffset = Vector2.new(404, 284)
             closeSection.ImageRectSize = Vector2.new(36, 36)
             closeSection.MouseButton1Click:Connect(function()
@@ -327,13 +327,13 @@ function Fun.Create(title)
                     sectionFrame:TweenSize(UDim2.new(0.956, 0,0, 36), "In", "Linear", 0.10)
                     game.TweenService:Create(closeSection, TweenInfo.new(0.10, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
                         Rotation = 0,
-                        ImageColor3 = Color3.fromRGB(82, 82, 98)
+                        ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish icon
                     }):Play()
                     game.TweenService:Create(sectionCircle, TweenInfo.new(0.10, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
-                        BackgroundColor3 = Color3.fromRGB(82, 82, 98)
+                        BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish circle
                     }):Play()
                     game.TweenService:Create(TextLabel, TweenInfo.new(0.10, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
-                        TextColor3 = Color3.fromRGB(82, 82, 98)
+                        TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                     }):Play()
                     wait(0.10)
                     UpdateSize()
@@ -342,13 +342,13 @@ function Fun.Create(title)
                     sectionFrame:TweenSize(UDim2.new(0.956,0, 0, sectionListLayout.AbsoluteContentSize.Y + 8), "In", "Linear", 0.10)
                     game.TweenService:Create(closeSection, TweenInfo.new(0.10, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
                         Rotation = 180,
-                        ImageColor3 = Color3.fromRGB(127, 97, 145)
+                        ImageColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish icon
                     }):Play()
                     game.TweenService:Create(sectionCircle, TweenInfo.new(0.10, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
-                        BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                        BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish circle
                     }):Play()
                     game.TweenService:Create(TextLabel, TweenInfo.new(0.10, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
-                        TextColor3 = Color3.fromRGB(127, 97, 145)
+                        TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
                     }):Play()
                     wait(0.10)
                     UpdateSize()
@@ -379,7 +379,7 @@ function Fun.Create(title)
                 UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 
                 TextButton.Parent = buttonFrame
-                TextButton.BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                TextButton.BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish button
                 TextButton.Position = UDim2.new(0.118320614, 0, -0.0813953504, 0)
                 TextButton.Size = UDim2.new(0, 262,0, 31)
                 TextButton.AutoButtonColor = false
@@ -433,12 +433,12 @@ function Fun.Create(title)
                     if callBackDebounce then
                         mouseleft = false
                         game.TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),{
-                            BackgroundColor3 = Color3.fromRGB(73, 56, 84)
+                            BackgroundColor3 = Color3.fromRGB(80, 120, 160) -- Darker bluish hover
                         }):Play()
                     else
                         mouseleft = false
                         game.TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),{
-                            BackgroundColor3 = Color3.fromRGB(98, 75, 113)
+                            BackgroundColor3 = Color3.fromRGB(90, 140, 180) -- Lighter bluish hover
                         }):Play()
                     end
                 end)
@@ -450,7 +450,7 @@ function Fun.Create(title)
                             TextSize = 14
                         }):Play()
                         game.TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),{
-                            BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                            BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish button
                         }):Play()
                     else
                         mouseleft = true
@@ -459,7 +459,7 @@ function Fun.Create(title)
                             TextSize = 14
                         }):Play()
                         game.TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),{
-                            BackgroundColor3 = Color3.fromRGB(127, 97, 145)
+                            BackgroundColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish button
                         }):Play()
                     end
                 end)
