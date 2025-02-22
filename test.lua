@@ -355,16 +355,19 @@ function Fun.Create(title)
                 end
             end)
 
+        
             local itemHandling = {}
 
-            function itemHandling:Button(btnText, callback)
+            function itemHandling:Button(btnText, callback, icon)
                 btnText = btnText or "Click Me!"
                 callback = callback or function() end
+                icon = icon or "rbxassetid://3926305904" -- Default icon
 
                 local buttonFrame = Instance.new("Frame")
                 local UIListLayout = Instance.new("UIListLayout")
                 local TextButton = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
+                local btnIcon = Instance.new("ImageLabel")
 
                 buttonFrame.Name = "buttonFrame"
                 buttonFrame.Parent = sectionFrame
@@ -390,6 +393,15 @@ function Fun.Create(title)
 
                 UICorner.CornerRadius = UDim.new(0, 5)
                 UICorner.Parent = TextButton
+
+                btnIcon.Name = "btnIcon"
+                btnIcon.Parent = TextButton
+                btnIcon.BackgroundTransparency = 1.000
+                btnIcon.Position = UDim2.new(0, 5, 0.5, -10)
+                btnIcon.Size = UDim2.new(0, 20, 0, 20)
+                btnIcon.Image = icon
+                btnIcon.ImageColor3 = Color3.fromRGB(255, 255, 255) -- White icon
+
 
                 local clickDebounce = false
                 local callBackDebounce = false
