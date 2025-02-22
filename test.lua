@@ -137,7 +137,6 @@ function Fun.Create(title)
             nightmarefun.Enabled = not nightmarefun.Enabled
         end
     end)
-
     nightmares.Name = "nightmares"
     nightmares.Parent = mainSide
     nightmares.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -149,11 +148,10 @@ function Fun.Create(title)
     nightmares.Text = " "..title
     nightmares.TextColor3 = Color3.fromRGB(100, 150, 200) -- Light bluish text
     nightmares.TextSize = 20.000
-    nightmares.TextWrapped = true
+    nightmares.TextWrapped = true -- Ensures text wraps to the next line
     nightmares.TextScaled = true -- Automatically scales text to fit
     nightmares.TextTruncate = Enum.TextTruncate.AtEnd -- Adds "..." if text is too long
 
-    
     fun.Name = "fun"
     fun.Parent = mainSide
     fun.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -195,6 +193,14 @@ function Fun.Create(title)
     pages.Name = "pages"
     pages.Parent = allPages
 
+local function truncateText(text, maxLength)
+    if text:len() > maxLength then
+        return text:sub(1, maxLength) .. "..."
+    end
+    return text
+end
+
+nightmares.Text = " " .. truncateText(title, 20) 
     local tabHandling = {}
 
     function tabHandling:Tab(tabText)
